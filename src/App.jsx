@@ -1,19 +1,14 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import LeadPopup from './pages/popup'
-import HomePage from './pages/HomePage'
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import LeadPopup from "./pages/popup";
+import HomePage from "./pages/HomePage";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Route, Routes } from "react-router-dom";
-import PaymentPage from "./pages/DesktopPopup";
 
 function App() {
-  const [showPopup, setShowPopup] = useState(false);
 
-
+  // AOS Animation
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -23,14 +18,15 @@ function App() {
     });
   }, []);
 
-    useEffect(() => {
+  // Facebook Pixel
+  useEffect(() => {
     !(function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
-      n = (f.fbq = function () {
+      n = f.fbq = function () {
         n.callMethod
           ? n.callMethod.apply(n, arguments)
           : n.queue.push(arguments);
-      });
+      };
       if (!f._fbq) f._fbq = n;
       n.push = n;
       n.loaded = true;
@@ -52,13 +48,18 @@ function App() {
     window.fbq("track", "PageView");
   }, []);
 
-
   return (
-    <>
-    <LeadPopup/>
-    <HomePage />
-    </>
-  )
+    <Routes>
+      {/* Default → Form */}
+      <Route path="/" element={<LeadPopup />} />
+
+      {/* After submit → Home */}
+      <Route path="/home" element={<HomePage />} />
+
+      {/* 404 fallback */}
+      <Route path="*" element={<h1>404 Not Found</h1>} />
+    </Routes>
+  );
 }
 
 export default App;

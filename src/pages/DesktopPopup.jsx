@@ -10,6 +10,12 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+// ✅ Redux
+import { useDispatch, useSelector } from "react-redux";
+import { submitLead, resetLeadState } from "../redux/leadSlice";
+
+import pic from "../assets/social-media-course-by-shahid.jpg"
+
 const PaymentPage = () => {
 
     const [formData, setFormData] = useState({
@@ -19,16 +25,20 @@ const PaymentPage = () => {
     });
 
     const [isDesktop, setIsDesktop] = useState(true);
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
+    const { loading, success, error, lead } = useSelector(
+        (state) => state.lead
+    );
 
     const course = {
         title: "Complete Social Media Income System",
-        image: "https://i.ibb.co/jPC3q2JK/social-media-course-by-shahid.jpg",
+        image: pic,
     };
 
-    // ✅ Detect screen size
+    // ✅ Screen detect
     useEffect(() => {
         const checkScreen = () => {
             setIsDesktop(window.innerWidth >= 768);
@@ -40,7 +50,7 @@ const PaymentPage = () => {
         return () => window.removeEventListener("resize", checkScreen);
     }, []);
 
-    // ❌ Mobile pe kuch nahi dikhana
+    // ❌ Mobile hide
     if (!isDesktop) return null;
 
     // ✅ Input change
@@ -51,18 +61,26 @@ const PaymentPage = () => {
         });
     };
 
-    // ✅ Submit + Save
+    // ✅ Submit (Same API)
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // ✅ Save data
-        localStorage.setItem("paymentData", JSON.stringify(formData));
-
-        console.log("Saved:", formData);
-
-        // ✅ Redirect
-        navigate("/home");
+        dispatch(submitLead({
+            ...formData,
+            page: "payment" // 🔥 IMPORTANT (tracking)
+        }));
     };
+
+    // ✅ Success handling
+    useEffect(() => {
+        if (success && lead) {
+            localStorage.setItem("paymentData", JSON.stringify(lead));
+
+            navigate("/home");
+
+            dispatch(resetLeadState());
+        }
+    }, [success, lead]);
 
     return (
         <div className="min-h-screen bg-gray-100 py-10 pt-20 px-4">
@@ -99,92 +117,81 @@ const PaymentPage = () => {
                                         <span>Certificate Included</span>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
                     {/* RIGHT */}
                     <div className="w-full lg:w-[420px]">
-
                         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
 
-                            <div className="bg-[#0092B9] text-white p-5">
+                            {/* <div className="bg-[#0092B9] text-white p-5">
                                 <h3 className="font-bold flex items-center gap-2 text-lg">
                                     <FaShieldAlt />
-                                    Secure Checkout
+                                    Secure 
                                 </h3>
-                            </div>
+                            </div> */}
 
                             <div className="p-6 md:p-7">
                                 <form onSubmit={handleSubmit} className="space-y-5">
 
                                     {/* Name */}
-                                    <div>
-                                        <label className="block mb-2 text-sm font-medium">
-                                            <FaUser className="inline mr-2" />
-                                            Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            className="w-full border p-3 rounded-lg"
-                                            required
-                                        />
-                                    </div>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder="Name"
+                                        className="w-full border p-3 rounded-lg"
+                                        required
+                                    />
 
                                     {/* Email */}
-                                    <div>
-                                        <label className="block mb-2 text-sm font-medium">
-                                            <FaEnvelope className="inline mr-2" />
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            className="w-full border p-3 rounded-lg"
-                                            required
-                                        />
-                                    </div>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="Email"
+                                        className="w-full border p-3 rounded-lg"
+                                        required
+                                    />
 
                                     {/* Phone */}
-                                    <div>
-                                        <label className="block mb-2 text-sm font-medium">
-                                            <FaPhone className="inline mr-2" />
-                                            Phone
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            className="w-full border p-3 rounded-lg"
-                                            required
-                                        />
-                                    </div>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        placeholder="Phone"
+                                        className="w-full border p-3 rounded-lg"
+                                        required
+                                    />
+
+                                    {/* ❗ Error */}
+                                    {error && (
+                                        <p className="text-red-500 text-sm">{error}</p>
+                                    )}
 
                                     {/* Button */}
-                                    <button className="w-full bg-[#0092B9] text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition">
+                                    <button
+                                        disabled={loading}
+                                        className="w-full bg-[#0092B9] text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
+                                    >
                                         <FaLock />
-                                        Register
+                                        {loading ? "Processing..." : "Register"}
                                         <FaChevronRight />
                                     </button>
 
                                 </form>
-                                {/* Divider */}
+
                                 <div className="border-t my-6"></div>
 
-                                {/* Security Text */}
                                 <p className="text-sm text-gray-500 flex items-center gap-2 mb-4">
                                     <FaShieldAlt className="text-gray-400" />
                                     Your payment is secured with 256-bit SSL encryption
                                 </p>
 
-                                {/* What You Get */}
                                 <div>
                                     <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-[#111827]">
                                         <FaCheckCircle className="text-green-500" />
@@ -223,10 +230,9 @@ const PaymentPage = () => {
 
                                     </div>
                                 </div>
+
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>
