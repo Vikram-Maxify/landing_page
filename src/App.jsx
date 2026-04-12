@@ -1,33 +1,34 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import LeadPopup from './pages/popup'
-import HomePage from './pages/HomePage'
+import { useEffect, useState } from "react";
+import "./App.css";
+import LeadPopup from "./pages/popup";
+import HomePage from "./pages/HomePage";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Route, Routes } from "react-router-dom";
+import PaymentPage from "./pages/DesktopPopup";
 
 function App() {
+  const [showPopup, setShowPopup] = useState(false);
 
-
+  // ✅ AOS INIT
   useEffect(() => {
-  AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100,
-    disable: window.innerWidth < 768,
-  });
-}, []);
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+      disable: window.innerWidth < 768,
+    });
+  }, []);
 
-    useEffect(() => {
+  // ✅ FACEBOOK PIXEL
+  useEffect(() => {
     !(function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
-      n = f.fbq = function () {
+      n = (f.fbq = function () {
         n.callMethod
           ? n.callMethod.apply(n, arguments)
           : n.queue.push(arguments);
-      };
+      });
       if (!f._fbq) f._fbq = n;
       n.push = n;
       n.loaded = true;
@@ -49,13 +50,29 @@ function App() {
     window.fbq("track", "PageView");
   }, []);
 
+  // ✅ POPUP CONTROL (IMPORTANT)
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    const alreadySubmitted = localStorage.getItem("leadData");
+
+    if (isMobile && !alreadySubmitted) {
+      setTimeout(() => {
+        setShowPopup(true);
+      }, 1000); // 1 sec delay for smooth UX
+    }
+  }, []);
 
   return (
     <>
-    <LeadPopup/>
-    <HomePage />
+      {showPopup && <LeadPopup onClose={() => setShowPopup(false)} />}
+
+        <Routes>
+          <Route path="/" element={<PaymentPage />} />
+          <Route path="/home" element={<HomePage />} />
+        </Routes>
+      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
