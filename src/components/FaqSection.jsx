@@ -8,6 +8,8 @@ import {
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
+  const isDesktop = window.innerWidth >= 768;
+
   const faqs = [
     {
       question: "Kya beginners ke liye hai?",
@@ -46,14 +48,13 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-12 md:py-16 bg-white">
+    <section id="faq" className="bg-white">
       <div className="responsive-container mx-auto">
 
         {/* Heading */}
         <div
           className="text-center mb-10 md:mb-12"
-          data-aos="fade-up"
-          data-aos-duration="800"
+          data-aos={isDesktop ? "fade-up" : ""}
         >
           <h2 className="responsive-heading-1 font-bold mb-3 md:mb-4 text-[#111827]">
             Aksar Puche Jane Wale Sawal (FAQ)
@@ -68,8 +69,8 @@ const FAQSection = () => {
             <div
               key={index}
               className="border border-gray-200 rounded-2xl overflow-hidden card-shadow"
-              data-aos="fade-up"
-              data-aos-duration="800"
+              data-aos={isDesktop ? "fade-up" : ""}
+              data-aos-delay={index * 100}
             >
 
               {/* QUESTION */}

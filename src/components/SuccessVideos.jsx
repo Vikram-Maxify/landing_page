@@ -3,7 +3,7 @@ import React from "react";
 const SuccessSection = () => {
   return (
     <section
-      className="py-12 md:py-20 bg-gradient-to-b from-[#FFFFFF] to-[#FFFFFF]"
+      className="bg-gradient-to-b from-[#FFFFFF] to-[#FFFFFF]"
       id="success"
     >
       <div className="responsive-container mx-auto">

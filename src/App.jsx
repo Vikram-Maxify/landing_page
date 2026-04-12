@@ -9,13 +9,19 @@ import "aos/dist/aos.css";
 function App() {
 
   // AOS Animation
-  useEffect(() => {
+    useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
       offset: 100,
       disable: window.innerWidth < 768,
     });
+
+    // ✅ IMPORTANT FIX
+    setTimeout(() => {
+      AOS.refresh();
+    }, 300);
+
   }, []);
 
   // Facebook Pixel

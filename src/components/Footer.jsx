@@ -70,7 +70,7 @@ const Footer = () => {
               Quick Links
             </h3>
 
-            <ul className="space-y-3 md:space-y-4">
+            <ul className="space-y-3">
               <li>
                 <a href="#home" className="text-gray-400 hover:text-white transition flex items-center text-sm md:text-base tap-target">
                   <MdChevronRight className="text-xs md:text-sm mr-2" />
@@ -142,7 +142,7 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-base md:text-lg font-bold mb-4 md:mb-6 pb-2 border-b border-gray-700 text-white">
+            <h3 className="text-base md:text-lg font-bold mb-1 md:mb-3 pb-2 border-b border-gray-700 text-white">
               Free Resources
             </h3>
 
@@ -150,7 +150,7 @@ const Footer = () => {
               Free Digital Marketing Guide aur updates ke liye subscribe karein
             </p>
 
-            <div className="mb-3 md:mb-4"></div>
+            {/* <div className="mb-3 md:mb-4"></div> */}
           </div>
 
         </div>

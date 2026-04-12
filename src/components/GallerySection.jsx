@@ -1,12 +1,18 @@
 import React from "react";
 
 const TeamSection = () => {
+
+  const isDesktop = window.innerWidth >= 768;
+
   return (
-    <section id="gallery" className="py-12 md:py-16 bg-white">
+    <section id="gallery" className=" bg-white">
       <div className="responsive-container mx-auto">
 
         {/* Section Heading */}
-        <div className="text-center mb-12" data-aos="fade-up">
+        <div
+          className="text-center mb-10 md:mb-12"
+          data-aos={isDesktop ? "fade-up" : ""}
+        >
           <h2 className="responsive-heading-1 font-extrabold text-[#111827]">
             Meet Our Team
           </h2>
@@ -19,7 +25,11 @@ const TeamSection = () => {
         </div>
 
         {/* Full Image */}
-        <div className="w-full">
+        <div
+          className="w-full"
+          data-aos={isDesktop ? "fade-up" : ""}
+          data-aos-delay="200"
+        >
           <img
             src="https://i.ibb.co/gMcpPHtm/maxify-team.png"
             alt="Maxify Team"

@@ -9,14 +9,17 @@ import {
 } from "react-icons/md";
 
 const CourseModules = () => {
+
+  const isDesktop = window.innerWidth >= 768;
+
   return (
-    <section className="py-10 md:py-14 bg-[#FFFFFF]">
+    <section className=" bg-[#FFFFFF]">
       <div className="responsive-container mx-auto">
 
         {/* Course Modules */}
         <div
           className="bg-white rounded-3xl p-6 md:p-8 card-shadow mobile-padding"
-          data-aos="fade-up"
+          data-aos={isDesktop ? "fade-up" : ""}
           data-aos-duration="1000"
         >
           <h3 className="responsive-heading-2 font-bold text-center mb-7 md:mb-8 text-[#111827]">
@@ -25,7 +28,7 @@ const CourseModules = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-reduced mobile-grid-gap">
 
-            {/* Social Media Handling */}
+            {/* Card 1 */}
             <div className="bg-white rounded-2xl p-5 md:p-6 text-center card-shadow hover:scale-105 transition duration-300">
               <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-xl bg-[#0092B9] flex items-center justify-center">
                 <MdManageAccounts className="text-white text-xl md:text-2xl" />
@@ -35,7 +38,7 @@ const CourseModules = () => {
               </h4>
             </div>
 
-            {/* Social Media Marketing */}
+            {/* Card 2 */}
             <div className="bg-white rounded-2xl p-5 md:p-6 text-center card-shadow hover:scale-105 transition duration-300">
               <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-xl bg-[#0092B9] flex items-center justify-center">
                 <MdCampaign className="text-white text-xl md:text-2xl" />
@@ -45,7 +48,7 @@ const CourseModules = () => {
               </h4>
             </div>
 
-            {/* Business Building */}
+            {/* Card 3 */}
             <div className="bg-white rounded-2xl p-5 md:p-6 text-center card-shadow hover:scale-105 transition duration-300">
               <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-xl bg-[#0092B9] flex items-center justify-center">
                 <MdBusinessCenter className="text-white text-xl md:text-2xl" />
@@ -55,7 +58,7 @@ const CourseModules = () => {
               </h4>
             </div>
 
-            {/* Small Business Mindset */}
+            {/* Card 4 */}
             <div className="bg-white rounded-2xl p-5 md:p-6 text-center card-shadow hover:scale-105 transition duration-300">
               <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-xl bg-[#0092B9] flex items-center justify-center">
                 <MdPsychology className="text-white text-xl md:text-2xl" />
@@ -65,7 +68,7 @@ const CourseModules = () => {
               </h4>
             </div>
 
-            {/* Client Approach */}
+            {/* Card 5 */}
             <div className="bg-white rounded-2xl p-5 md:p-6 text-center card-shadow hover:scale-105 transition duration-300">
               <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-xl bg-[#0092B9] flex items-center justify-center">
                 <MdGroup className="text-white text-xl md:text-2xl" />
@@ -75,7 +78,7 @@ const CourseModules = () => {
               </h4>
             </div>
 
-            {/* AI Tools */}
+            {/* Card 6 */}
             <div className="bg-white rounded-2xl p-5 md:p-6 text-center card-shadow hover:scale-105 transition duration-300">
               <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-xl bg-[#0092B9] flex items-center justify-center">
                 <MdSmartToy className="text-white text-xl md:text-2xl" />
