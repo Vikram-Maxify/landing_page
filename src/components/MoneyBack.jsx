@@ -8,7 +8,7 @@ import {
 
 const GuaranteeSection = () => {
   return (
-    <section className=" bg-gradient-to-br from-green-600 via-green-700 to-emerald-800 text-white">
+    <section className=" bg-gradient-to-br from-green-600 via-green-700 to-emerald-800 text-white py-5">
 
       <div className="max-w-6xl !mx-auto px-4 text-center">
 

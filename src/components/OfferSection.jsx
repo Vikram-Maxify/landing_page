@@ -17,7 +17,7 @@ const OfferSection = () => {
     const seconds = timeLeft % 60;
 
     return (
-        <section className=" gradient-bg text-white" id="offer">
+        <section className=" gradient-bg text-white py-10" id="offer">
             <div className="responsive-container mx-auto">
 
                 <div className="max-w-4xl !mx-auto">

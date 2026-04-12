@@ -48,15 +48,15 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="bg-white">
-      <div className="responsive-container mx-auto">
+    <section id="faq" className="bg-white py-2">
+      <div className="responsive-container mx-auto mt-2">
 
         {/* Heading */}
         <div
           className="text-center mb-10 md:mb-12"
           data-aos={isDesktop ? "fade-up" : ""}
         >
-          <h2 className="responsive-heading-1 font-bold mb-3 md:mb-4 text-[#111827]">
+          <h2 className="responsive-heading-1 font-bold mb-3 md:mb-4 mt-2 text-[#111827]">
             Aksar Puche Jane Wale Sawal (FAQ)
           </h2>
           <div className="section-divider"></div>

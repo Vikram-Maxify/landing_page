@@ -50,9 +50,6 @@ const PaymentPage = () => {
         return () => window.removeEventListener("resize", checkScreen);
     }, []);
 
-    // ❌ Mobile hide
-    if (!isDesktop) return null;
-
     // ✅ Input change
     const handleChange = (e) => {
         setFormData({
@@ -83,7 +80,9 @@ const PaymentPage = () => {
     }, [success, lead]);
 
     return (
-        <div className="min-h-screen bg-gray-100 py-10 pt-20 px-4">
+        <>
+    {isDesktop && (
+      <div className="min-h-screen bg-gray-100 py-10 pt-20 px-4">
 
             <div className="max-w-7xl mx-auto">
 
@@ -189,7 +188,7 @@ const PaymentPage = () => {
 
                                 <p className="text-sm text-gray-500 flex items-center gap-2 mb-4">
                                     <FaShieldAlt className="text-gray-400" />
-                                    Your payment is secured with 256-bit SSL encryption
+                                    Your Data is secured with 256-bit SSL encryption
                                 </p>
 
                                 <div>
@@ -239,6 +238,8 @@ const PaymentPage = () => {
 
             </div>
         </div>
+        )}
+  </>
     );
 };
 
