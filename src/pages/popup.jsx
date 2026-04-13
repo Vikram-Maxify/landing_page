@@ -3,7 +3,13 @@ import logo from "../assets/AVATAR-IMAGE.png";
 import { useDispatch, useSelector } from "react-redux";
 import { submitLead, resetLeadState } from "../redux/leadSlice";
 import { useNavigate } from "react-router-dom";
-import { FaCheckCircle, FaLock, FaBolt, FaInfinity, FaHeadphones } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaLock,
+  FaBolt,
+  FaInfinity,
+  FaHeadphones,
+} from "react-icons/fa";
 import pic from "../assets/social-media-course-by-shahid.jpg";
 
 const features = [
@@ -58,19 +64,17 @@ const LeadPage = () => {
   }, [success, lead, dispatch, navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-100 flex items-start lg:items-center justify-center px-4 py-6">
+      <div className="max-w-7xl w-full mx-auto">
 
-
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-stretch">
 
           {/* LEFT CARD (HIDDEN ON MOBILE) */}
           <div className="hidden lg:block flex-1 bg-white rounded-2xl shadow overflow-hidden">
 
             <img
               src={pic}
-              className="w-full h-auto max-h-[350px] object-cover"
-              alt="course"
+              className="w-full h-auto object-contain" alt="course"
             />
 
             <div className="p-6">
@@ -90,7 +94,9 @@ const LeadPage = () => {
 
                     <div>
                       <h4 className="font-semibold">{item.title}</h4>
-                      <p className="text-sm text-gray-600">{item.subtitle}</p>
+                      <p className="text-sm text-gray-600">
+                        {item.subtitle}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -99,7 +105,7 @@ const LeadPage = () => {
           </div>
 
           {/* RIGHT FORM */}
-          <div className="w-full lg:w-[420px] bg-white rounded-2xl shadow p-6">
+          <div className="w-full max-w-md lg:w-[420px] bg-white rounded-2xl shadow p-6">
 
             <h2 className="text-xl sm:text-2xl font-bold text-center">
               Learn 3 Powerful Ways to Turn Social Media Into Income
@@ -161,7 +167,9 @@ const LeadPage = () => {
               </div>
 
               {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
+                <p className="text-red-500 text-sm text-center">
+                  {error}
+                </p>
               )}
 
               <button
