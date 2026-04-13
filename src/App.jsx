@@ -8,7 +8,7 @@ import "aos/dist/aos.css";
 
 function App() {
 
-  // AOS Animation
+  // 🎯 AOS Animation
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -22,7 +22,7 @@ function App() {
     }, 300);
   }, []);
 
-  // Facebook Pixel
+  // 📊 Facebook Pixel
   useEffect(() => {
     !(function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
@@ -52,23 +52,43 @@ function App() {
     window.fbq("track", "PageView");
   }, []);
 
-  // 🔐 Protected Wrapper
-  const ProtectedRoute = ({ children }) => {
-    const leadData = localStorage.getItem("leadData");
+  // 🍪 Get Cookie Helper
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return decodeURIComponent(parts.pop().split(";").shift());
+    }
+    return null;
+  };
 
-    if (!leadData) {
+  // 🔐 Protected Route
+  const ProtectedRoute = ({ children }) => {
+    const leadLocal = localStorage.getItem("leadData");
+    const leadCookie = getCookie("leadData");
+
+    if (!leadLocal && !leadCookie) {
       return <Navigate to="/" replace />;
     }
 
     return children;
   };
 
+  // 🔁 Root Redirect Logic
+  const hasLead =
+    localStorage.getItem("leadData") || getCookie("leadData");
+
   return (
     <Routes>
-      {/* Default → Form */}
-      <Route path="/" element={<LeadPopup />} />
+      {/* Root */}
+      <Route
+        path="/"
+        element={
+          hasLead ? <Navigate to="/home" replace /> : <LeadPopup />
+        }
+      />
 
-      {/* 🔐 Protected Home */}
+      {/* Protected Home */}
       <Route
         path="/home"
         element={
@@ -78,7 +98,7 @@ function App() {
         }
       />
 
-      {/* 404 fallback */}
+      {/* 404 */}
       <Route path="*" element={<h1>404 Not Found</h1>} />
     </Routes>
   );

@@ -223,7 +223,7 @@ const PaymentPage = () => {
                                         <div className="flex items-start gap-3">
                                             <FaCheckCircle className="text-green-500 mt-1" />
                                             <p className="text-gray-700 text-sm md:text-base">
-                                                30-day money-back guarantee
+                                                1-Day money-back guarantee
                                             </p>
                                         </div>
 

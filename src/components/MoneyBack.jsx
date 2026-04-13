@@ -21,7 +21,7 @@ const GuaranteeSection = () => {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-          30-Day 100% Money Back <br className="hidden md:block" />
+          1-Day 100% Money Back <br className="hidden md:block" />
           Guarantee
         </h2>
 
