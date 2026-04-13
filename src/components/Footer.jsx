@@ -32,11 +32,14 @@ const Footer = () => {
   </div>
 
   <div>
-    <h2 className="text-lg font-bold">Maxify Academy</h2>
-    <p className="text-gray-400 text-sm">
-      F02, D34 Red Fm Road Sector 2 Block D Noida, Uttar Pradesh 201301
-    </p>
-  </div>
+  <h2 className="font-bold text-sm sm:text-lg mt-2 sm:mt-1">
+    Maxify Academy
+  </h2>
+
+  <p className="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-0">
+    F02, D34 Red Fm Road Sector 2 Block D Noida, Uttar Pradesh 201301
+  </p>
+</div>
 </div>
 
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
