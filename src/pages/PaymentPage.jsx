@@ -27,14 +27,14 @@ const PaymentPage = () => {
 
   /* ================= AUTO REDIRECT AFTER POPUP ================= */
   useEffect(() => {
-    if (popup.show) {
-      const timer = setTimeout(() => {
-        navigate("/home", { replace: true });
-      }, 2500); // 2.5 sec delay
+  if (popup.show && popup.type !== "success") {
+    const timer = setTimeout(() => {
+      navigate("/home", { replace: true });
+    }, 2500);
 
-      return () => clearTimeout(timer);
-    }
-  }, [popup.show, navigate]);
+    return () => clearTimeout(timer);
+  }
+}, [popup.show, popup.type, navigate]);
 
   /* ================= LOAD RAZORPAY ================= */
   const loadRazorpay = () => {
@@ -161,13 +161,23 @@ const PaymentPage = () => {
               );
 
               if (!createPurchase.fulfilled.match(purchaseRes)) {
-                setPopup({
-                  show: true,
-                  type: "error",
-                  message: "Purchase save failed",
-                });
-                return;
-              }
+  console.warn("Purchase save failed but payment success");
+
+  // ❗ STILL REDIRECT
+  navigate("/payment-success", {
+    replace: true,
+    state: {
+      email,
+      phone,
+      paymentId: response.razorpay_payment_id,
+      orderId: response.razorpay_order_id,
+      courseTitle: course.title,
+      amount: finalPrice,
+    },
+  });
+
+  return;
+}
 
               navigate("/payment-success", {
                 replace: true,

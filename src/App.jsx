@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import PaymentPage from "./pages/PaymentPage";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 function App() {
 
@@ -104,9 +105,12 @@ function App() {
         element={
           <ProtectedRoute>
             <PaymentPage />
+            
           </ProtectedRoute>
         }
       />
+
+      <Route path="payment-success" element={<PaymentSuccess />} />
 
       {/* 404 */}
       <Route path="*" element={<h1>404 Not Found</h1>} />
