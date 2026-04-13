@@ -27,7 +27,7 @@ const GuaranteeSection = () => {
 
         {/* SUBTEXT */}
         <p className="text-base md:text-lg text-green-100 max-w-3xl mx-auto mb-12 leading-relaxed">
-          Risk-free investment. Agar 30 days me aapko course se value nahi milti,
+          Risk-free investment. Agar 1 Day me aapko course se value nahi milti,
           to hum aapka paisa wapas kar denge. No questions asked.
         </p>
 
