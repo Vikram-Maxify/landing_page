@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import HeroSection from '../components/Hero'
 import SuccessSection from '../components/SuccessVideos'
 import InstructorSection from '../components/InstructorSection'
@@ -10,24 +10,65 @@ import GuaranteeSection from '../components/MoneyBack'
 import Footer from '../components/Footer'
 
 const HomePage = () => {
-  
+
+  // 🎯 Refs for videos
+  const heroVideoRef = useRef(null);
+  const successVideoRefs = useRef([]);
+
   useEffect(() => {
-  window.scroll(0, 0);
-}), []
+    window.scrollTo(0, 0);
+  }, []);
+
+  // 🎯 Main Control Function
+  const handleVideoPlay = (type, index = null) => {
+
+    // 👉 Hero video play hui
+    if (type === "hero") {
+      successVideoRefs.current.forEach((video) => {
+        if (video) {
+          video.pause();
+        }
+      });
+    }
+
+    // 👉 Success video play hui
+    if (type === "success") {
+
+      // Hero pause
+      if (heroVideoRef.current) {
+        heroVideoRef.current.pause();
+      }
+
+      // Baaki success videos pause
+      successVideoRefs.current.forEach((video, i) => {
+        if (video && i !== index) {
+          video.pause();
+        }
+      });
+    }
+  };
 
   return (
     <>
-    <HeroSection />
-    <SuccessSection />
-    <InstructorSection />
-    <CourseModules />
-    <TeamSection />
-    {/* <FAQSection /> */}
-    {/* <OfferSection /> */}
-    <GuaranteeSection />
-    <Footer />
+      <HeroSection
+        videoRef={heroVideoRef}
+        onPlay={() => handleVideoPlay("hero")}
+      />
+
+      <SuccessSection
+        videoRefs={successVideoRefs}
+        onPlay={(index) => handleVideoPlay("success", index)}
+      />
+
+      <InstructorSection />
+      <CourseModules />
+      <TeamSection />
+      <FAQSection />
+      <OfferSection />
+      <GuaranteeSection />
+      <Footer />
     </>
   )
 }
 
-export default HomePage
+export default HomePage;

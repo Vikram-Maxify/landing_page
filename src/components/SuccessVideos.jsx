@@ -1,16 +1,23 @@
 import React, { useRef } from "react";
 
-const SuccessSection = () => {
+const SuccessSection = ({ videoRefs, onPlay }) => {
 
-  const videoRefs = useRef([]);
+  const localVideoRefs = useRef([]);
 
   const handlePlay = (currentIndex) => {
-  videoRefs.current.forEach((video, index) => {
-    if (video && index !== currentIndex) {
-      video.pause();
+
+    // 👉 Same section me baaki videos pause
+    localVideoRefs.current.forEach((video, index) => {
+      if (video && index !== currentIndex) {
+        video.pause();
+      }
+    });
+
+    // 👉 Parent ko batao (Hero pause karega)
+    if (onPlay) {
+      onPlay(currentIndex);
     }
-  });
-};
+  };
 
   return (
     <section
@@ -46,17 +53,24 @@ const SuccessSection = () => {
               className="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100"
             >
               <div className="success-video-container">
-               <video
-  ref={(el) => (videoRefs.current[index] = el)}
-  onPlay={() => handlePlay(index)}
-  controls
-  className="w-full h-full object-cover"
->
-  <source
-    src={`https://vz-52fa69c4-957.b-cdn.net/${id}/playlist.m3u8`}
-    type="application/x-mpegURL"
-  />
-</video>
+                <video
+                  ref={(el) => {
+                    localVideoRefs.current[index] = el;
+
+                    // 👉 Parent ref bhi assign karo
+                    if (videoRefs) {
+                      videoRefs.current[index] = el;
+                    }
+                  }}
+                  onPlay={() => handlePlay(index)} // 🔥 MAIN FIX
+                  controls
+                  className="w-full h-full object-cover"
+                >
+                  <source
+                    src={`https://vz-52fa69c4-957.b-cdn.net/${id}/playlist.m3u8`}
+                    type="application/x-mpegURL"
+                  />
+                </video>
               </div>
             </div>
           ))}
@@ -93,10 +107,10 @@ const SuccessSection = () => {
 
           <div className="text-center p-6 md:p-8 bg-white rounded-3xl shadow-lg border border-gray-100 mobile-padding">
             <div className="text-2xl md:text-3xl lg:text-4xl font-black text-[#0092B9]">
-              30
+              1
             </div>
             <p className="text-gray-500 text-sm font-bold mt-1">
-              DAYS REFUND
+              DAY REFUND
             </p>
           </div>
 

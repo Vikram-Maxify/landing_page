@@ -1,26 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBolt } from "react-icons/fa";
 import { MdCheckCircle, MdLock } from "react-icons/md";
-import { useRef, useState } from "react";
 import { IoMdPlay } from "react-icons/io";
-
 
 const handleRedirect = () => {
   const data = localStorage.getItem("leadData");
   const { email, phone } = JSON.parse(data || "{}");
 
-
   const baseUrl = "/payment/complete-social-media-income-system";
-
   const finalUrl = `${baseUrl}?email=${email}&phone=${phone}`;
 
   window.location.href = finalUrl;
 };
 
-const HeroSection = () => {
-
-
+const HeroSection = ({ videoRef, onPlay }) => {
   const [timeLeft, setTimeLeft] = useState(86400);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -30,20 +25,18 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const hours = Math.floor(timeLeft / 3600);
-  const minutes = Math.floor((timeLeft % 3600) / 60);
-  const seconds = timeLeft % 60;
-
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlay = () => {
+  const handlePlayClick = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
       videoRef.current.play();
       setIsPlaying(true);
+      onPlay(); // 🔥 SUCCESS videos pause
     }
   };
+
+  const hours = Math.floor(timeLeft / 3600);
+  const minutes = Math.floor((timeLeft % 3600) / 60);
+  const seconds = timeLeft % 60;
 
   return (
     <section
@@ -83,9 +76,7 @@ const HeroSection = () => {
               Sirf Smartphone + Internet se
             </h5>
 
-            {/* Features */}
             <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-reduced mb-8">
-
               {[
                 "No Laptop Required",
                 "No Investment Required",
@@ -102,10 +93,8 @@ const HeroSection = () => {
                   </span>
                 </div>
               ))}
-
             </div>
 
-            {/* CTA */}
             <button
               onClick={handleRedirect}
               className="hidden sm:flex w-full md:w-auto px-6 md:px-8 py-4 md:py-5 rounded-2xl bg-[#0092B9] text-white text-base md:text-lg font-extrabold shadow-2xl hover:scale-105 transition flex-col md:flex-row items-center gap-2"
@@ -127,7 +116,7 @@ const HeroSection = () => {
             <div className="relative rounded-xl shadow-2xl overflow-visible">
               <div className="relative rounded-xl shadow-2xl overflow-hidden">
                 <video
-                  ref={videoRef}
+                  ref={videoRef} // 🔥 parent ref
                   src="https://vz-52fa69c4-957.b-cdn.net/64941448-16af-411e-9c9f-a972f8a6f55b/playlist.m3u8"
                   poster="https://vz-52fa69c4-957.b-cdn.net/742abb8e-cfed-4562-8897-462aca306b02/thumbnail_5877ee08.jpg"
                   className="w-full aspect-video object-cover rounded-xl"
@@ -135,11 +124,16 @@ const HeroSection = () => {
                   muted
                   playsInline
                   controls
+                  onPlay={() => {
+                    setIsPlaying(true);
+                    onPlay(); // 🔥 IMPORTANT
+                  }}
+                  onPause={() => setIsPlaying(false)}
                 />
 
                 {!isPlaying && (
                   <button
-                    onClick={handlePlay}
+                    onClick={handlePlayClick}
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition text-xl">
@@ -160,7 +154,6 @@ const HeroSection = () => {
               1-to-1 live Doubt Solving
             </h4>
 
-            {/* Mobile Features */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-reduced mb-8 lg:hidden">
               {[
                 "No Laptop Required",
@@ -179,7 +172,6 @@ const HeroSection = () => {
               ))}
             </div>
 
-            {/* CTA */}
             <button
               onClick={handleRedirect}
               className="animate-pulseScale w-full px-6 md:px-8 py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg shadow-xl hover:scale-105 transition flex items-center justify-center mt-5 bg-[#0092B9]"
@@ -209,7 +201,6 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Guarantee */}
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">
               <div className="p-6 bg-gradient-to-t from-green-100 via-green-200 to-green-300 rounded-3xl shadow-lg text-center">
                 <h2 className="text-2xl md:text-3xl font-extrabold text-green-900">
