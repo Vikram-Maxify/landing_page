@@ -27,48 +27,47 @@ const HomePage = () => {
       successVideoRefs.current.forEach((video) => {
         if (video) {
           video.pause();
+          video.currentTime = 0; // 🔥 IMPORTANT
         }
       });
     }
 
-    // 👉 Success video play hui
     if (type === "success") {
-
-      // Hero pause
       if (heroVideoRef.current) {
         heroVideoRef.current.pause();
+        heroVideoRef.current.currentTime = 0; // 🔥 IMPORTANT
       }
 
-      // Baaki success videos pause
       successVideoRefs.current.forEach((video, i) => {
         if (video && i !== index) {
           video.pause();
+          video.currentTime = 0; // 🔥 IMPORTANT
         }
       });
     }
   };
 
-  return (
-    <>
-      <HeroSection
-        videoRef={heroVideoRef}
-        onPlay={() => handleVideoPlay("hero")}
-      />
+    return (
+      <>
+        <HeroSection
+          videoRef={heroVideoRef}
+          onPlay={() => handleVideoPlay("hero")}
+        />
 
-      <SuccessSection
-        videoRefs={successVideoRefs}
-        onPlay={(index) => handleVideoPlay("success", index)}
-      />
+        <SuccessSection
+          videoRefs={successVideoRefs}
+          onPlay={(index) => handleVideoPlay("success", index)}
+        />
 
-      <InstructorSection />
-      <CourseModules />
-      <TeamSection />
-      <FAQSection />
-      <OfferSection />
-      <GuaranteeSection />
-      <Footer />
-    </>
-  )
-}
+        <InstructorSection />
+        <CourseModules />
+        <TeamSection />
+        <FAQSection />
+        <OfferSection />
+        <GuaranteeSection />
+        <Footer />
+      </>
+    )
+  }
 
-export default HomePage;
+  export default HomePage;

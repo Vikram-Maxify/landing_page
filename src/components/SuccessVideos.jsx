@@ -6,17 +6,20 @@ const SuccessSection = ({ videoRefs, onPlay }) => {
 
   const handlePlay = (currentIndex) => {
 
-    // 👉 Same section me baaki videos pause
     localVideoRefs.current.forEach((video, index) => {
       if (video && index !== currentIndex) {
+
         video.pause();
+
+        // 🔥 FORCE STOP (important for live)
+        video.currentTime = 0;
+
+        // optional (extra safe)
+        video.load();
       }
     });
 
-    // 👉 Parent ko batao (Hero pause karega)
-    if (onPlay) {
-      onPlay(currentIndex);
-    }
+    if (onPlay) onPlay(currentIndex);
   };
 
   return (
@@ -25,7 +28,7 @@ const SuccessSection = ({ videoRefs, onPlay }) => {
       id="success"
     >
       <div className="responsive-container mx-auto">
-        
+
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="responsive-heading-1 font-extrabold mb-4 text-[#111827]">
