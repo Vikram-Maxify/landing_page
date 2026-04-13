@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import LeadPopup from "./pages/popup";
 import HomePage from "./pages/HomePage";
+import PaymentPage from "./pages/PaymentPage";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -94,6 +95,15 @@ function App() {
         element={
           <ProtectedRoute>
             <HomePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/payment/:slug"
+        element={
+          <ProtectedRoute>
+            <PaymentPage />
           </ProtectedRoute>
         }
       />
