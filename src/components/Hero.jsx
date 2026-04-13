@@ -10,7 +10,7 @@ const handleRedirect = () => {
   const { email, phone } = JSON.parse(data || "{}");
 
 
-  const baseUrl = "https://demo1.go-drop.in/payment/complete-social-media-income-system";
+  const baseUrl = "/payment/complete-social-media-income-system";
 
   const finalUrl = `${baseUrl}?email=${email}&phone=${phone}`;
 
