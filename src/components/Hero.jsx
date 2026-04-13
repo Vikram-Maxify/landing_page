@@ -43,6 +43,7 @@ const HeroSection = ({ videoRef, onPlay }) => {
       id="home"
       className="hero-bg pb-6 sm:pt-8 sm:pb-8 md:pt-16 md:pb-14 relative overflow-hidden"
     >
+      
       {/* Navbar */}
       <nav className="sticky lg:fixed top-0 left-0 w-full z-50">
         <div className="bg-gradient-to-r from-[#0092B9] to-[#0092B9] text-white shadow-lg rounded-b-full">
@@ -204,7 +205,7 @@ const HeroSection = ({ videoRef, onPlay }) => {
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">
               <div className="p-6 bg-gradient-to-t from-green-100 via-green-200 to-green-300 rounded-3xl shadow-lg text-center">
                 <h2 className="text-2xl md:text-3xl font-extrabold text-green-900">
-                  30-Day 100% Money Back Guarantee
+                  1-Day 100% Money Back Guarantee
                 </h2>
               </div>
             </div>

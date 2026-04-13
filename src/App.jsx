@@ -7,6 +7,7 @@ import PaymentPage from "./pages/PaymentPage";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 function App() {
 
@@ -105,9 +106,12 @@ function App() {
         element={
           <ProtectedRoute>
             <PaymentPage />
+            
           </ProtectedRoute>
         }
       />
+
+      <Route path="payment-success" element={<PaymentSuccess />} />
 
       <Route
         path="/payment-success" element={
