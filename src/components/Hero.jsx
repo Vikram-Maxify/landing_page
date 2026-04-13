@@ -123,7 +123,7 @@ const HeroSection = ({ videoRef, onPlay }) => {
                   loop
                   muted
                   playsInline
-                  controls
+                  controls={isPlaying}
                   onPlay={() => {
                     setIsPlaying(true);
                     onPlay(); // 🔥 IMPORTANT
@@ -136,7 +136,7 @@ const HeroSection = ({ videoRef, onPlay }) => {
                     onClick={handlePlayClick}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition text-xl">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:scale-110 transition text-xl">
                       <IoMdPlay />
                     </div>
                   </button>

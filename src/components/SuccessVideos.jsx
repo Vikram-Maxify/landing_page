@@ -12,10 +12,10 @@ const SuccessSection = ({ videoRefs, onPlay }) => {
         video.pause();
 
         // 🔥 FORCE STOP (important for live)
-        video.currentTime = 0;
+        // video.currentTime = 0;
 
         // optional (extra safe)
-        video.load();
+        // video.load();
       }
     });
 
