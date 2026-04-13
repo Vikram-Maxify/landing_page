@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FaBolt } from "react-icons/fa";
 import { MdCheckCircle, MdLock } from "react-icons/md";
 
