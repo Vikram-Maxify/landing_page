@@ -62,8 +62,8 @@ const HomePage = () => {
         <InstructorSection />
         <CourseModules />
         <TeamSection />
-        <FAQSection />
-        <OfferSection />
+        {/* <FAQSection /> */}
+        {/* <OfferSection /> */}
         <GuaranteeSection />
         <Footer />
       </>
