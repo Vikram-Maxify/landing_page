@@ -27,29 +27,40 @@ const Footer = () => {
           {/* COMPANY */}
           <div>
             <div className="flex items-center mb-5">
-              <div className="w-12 h-12 rounded-2xl bg-[#0092B9] flex items-center justify-center mr-3">
-                <MdLocationCity />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold">Maxify Academy</h2>
-                <p className="text-gray-400 text-sm">Apne Ghar Se</p>
-              </div>
-            </div>
+  <div className="w-12 h-12 min-w-[48px] rounded-full bg-[#0092B9] flex items-center justify-center mr-3">
+    <MdLocationCity className="text-white text-xl" />
+  </div>
+
+  <div>
+    <h2 className="text-lg font-bold">Maxify Academy</h2>
+    <p className="text-gray-400 text-sm">
+      F02, D34 Red Fm Road Sector 2 Block D Noida, Uttar Pradesh 201301
+    </p>
+  </div>
+</div>
 
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
               Complete Social Media Income System
             </p>
 
             <div className="flex gap-3">
-              {[FaGlobe, FaInstagram, FaLinkedinIn, FaYoutube].map((Icon, i) => (
-                <div
-                  key={i}
-                  className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-[#0092B9] transition cursor-pointer"
-                >
-                  <Icon />
-                </div>
-              ))}
-            </div>
+  {[
+    { icon: FaGlobe, link: "https://maxifyacademy.com/" },
+    { icon: FaInstagram, link: "https://www.instagram.com/shahidrazaaa" },
+    { icon: FaLinkedinIn, link: "https://www.linkedin.com/company/themaxify/posts/?feedView=all" },
+    { icon: FaYoutube, link: "https://www.youtube.com/@maxifysolution1" },
+  ].map(({ icon: Icon, link }, i) => (
+    <a
+      key={i}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-[#0092B9] transition cursor-pointer text-white"
+    >
+      <Icon />
+    </a>
+  ))}
+</div>
           </div>
 
           {/* LINKS */}
@@ -151,7 +162,7 @@ const Footer = () => {
 
         {/* BOTTOM */}
         <div className="border-t border-gray-800 pt-6 text-center text-gray-400 text-sm">
-          © 2023 Apni City, Apne Gaon Se. All rights reserved.
+          © 2023 Maxify Academy. All rights reserved.
         </div>
 
         {/* DISCLAIMER (EXACT SAME AS YOUR ORIGINAL) */}
