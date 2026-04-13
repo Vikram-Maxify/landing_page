@@ -31,13 +31,13 @@ const Footer = () => {
                 <MdLocationCity />
               </div>
               <div>
-                <h2 className="text-lg font-bold">Apni City</h2>
+                <h2 className="text-lg font-bold">Maxify Academy</h2>
                 <p className="text-gray-400 text-sm">Apne Ghar Se</p>
               </div>
             </div>
 
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
-              Apne sheher ya gaon se hi Instagram aur Facebook ke zariye ₹30,000–₹90,000 mahine kamaane ka skill seekhein.
+              Complete Social Media Income System
             </p>
 
             <div className="flex gap-3">

@@ -1,7 +1,5 @@
 import React from "react";
-import { FaBolt } from "react-icons/fa";
 import { MdCheckCircle, MdLock } from "react-icons/md";
-import { useRef, useState } from "react";
 
 
 const handleRedirect = () => {
@@ -17,17 +15,6 @@ const handleRedirect = () => {
 };
 
 const HeroSection = () => {
-
-  const videoRef = useRef(null);
-const [isPlaying, setIsPlaying] = useState(false);
-
-const handlePlay = () => {
-  if (videoRef.current) {
-    videoRef.current.muted = false;
-    videoRef.current.play();
-    setIsPlaying(true);
-  }
-};
   return (
     <section
       id="home"
@@ -108,29 +95,12 @@ const handlePlay = () => {
           <div className="w-full lg:w-1/2 mobile-full-width">
 
             <div className="relative rounded-xl shadow-2xl overflow-visible">
-              <div className="relative rounded-xl shadow-2xl overflow-hidden">
-  <video
-    ref={videoRef}
-    src="https://vz-52fa69c4-957.b-cdn.net/64941448-16af-411e-9c9f-a972f8a6f55b/playlist.m3u8"
-    poster="https://vz-52fa69c4-957.b-cdn.net/742abb8e-cfed-4562-8897-462aca306b02/thumbnail_5877ee08.jpg"
-    className="w-full aspect-video object-cover rounded-xl"
-    loop
-    muted
-    playsInline
-    controls
-  />
-
-  {!isPlaying && (
-    <button
-      onClick={handlePlay}
-      className="absolute inset-0 flex items-center justify-center bg-black/40"
-    >
-      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition text-xl">
-        ▶
-      </div>
-    </button>
-  )}
-</div>
+              <video
+                src="https://vz-52fa69c4-957.b-cdn.net/64941448-16af-411e-9c9f-a972f8a6f55b/playlist.m3u8"
+                poster="https://vz-52fa69c4-957.b-cdn.net/742abb8e-cfed-4562-8897-462aca306b02/thumbnail_5877ee08.jpg"
+                className="w-full aspect-video object-cover rounded-xl shadow-xl"
+                controls
+              />
             </div>
 
             <div className="mt-4 text-center px-2 mb-2">
@@ -165,9 +135,9 @@ const handlePlay = () => {
             {/* CTA */}
             <button
               onClick={handleRedirect}
-              className="animate-pulseScale w-full px-6 md:px-8 py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg shadow-xl hover:scale-105 transition flex items-center justify-center mt-5 bg-[#0092B9]"
+              className="w-full px-6 md:px-8 py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg shadow-xl hover:scale-105 transition flex items-center justify-center mt-5 bg-[#0092B9]"
             >
-              <span><FaBolt /> </span>Enroll Now – ₹799
+              Enroll Now – ₹799
             </button>
             {/* Guarantee */}
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">
