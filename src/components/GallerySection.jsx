@@ -5,12 +5,12 @@ const TeamSection = () => {
   const isDesktop = window.innerWidth >= 768;
 
   return (
-    <section id="gallery" className=" bg-white pt-5">
+    <section id="gallery" className=" bg-white pt-8">
       <div className="responsive-container mx-auto">
 
         {/* Section Heading */}
         <div
-          className="text-center mb-10 md:mb-12"
+          className="text-center mb-10 md:mb-10"
           data-aos={isDesktop ? "fade-up" : ""}
         >
           <h2 className="responsive-heading-1 font-extrabold text-[#111827]">
