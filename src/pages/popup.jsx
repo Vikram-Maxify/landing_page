@@ -108,71 +108,98 @@ const LeadPage = () => {
           {/* RIGHT FORM */}
           <div className="w-full max-w-md lg:w-[420px] bg-white rounded-2xl shadow p-6 mx-auto">
 
-            <h2 className="text-xl sm:text-2xl font-bold text-center">
+            <h2 className="font-inter font-bold text-lg sm:text-2xl text-left sm:text-center">
               Learn 3 Powerful Ways to Turn Social Media Into Income
             </h2>
 
-            <p className="mt-2 text-sm text-center">
+            <p className="mt-2 font-inter font-semibold text-xs sm:text-sm text-left sm:text-center">
               Register now to watch free video 🚀
-            </p>
-
-            {/* Profile */}
+            </p>            {/* Profile */}
             <div className="flex items-center shadow-md rounded-lg gap-3 p-3 mt-4 mb-4">
               <img
                 src={logo}
                 className="w-14 h-14 rounded-full object-cover border"
                 alt="profile"
               />
-              <div>
-                <p className="font-semibold">Shahid Raza</p>
-                <p className="text-sm">• Digital Marketing Expert</p>
-                <p className="text-sm">• Social Media Income Coach</p>
-              </div>
-            </div>
+              <div id="instructor-info">
+                <p id="instructor-name" className="font-semibold">
+                  Shahid Raza
+                </p>
+
+                <ul className="text-sm list-disc pl-4 space-y-1">
+                  <li id="tagline">
+                    I help people earn money using Social Media
+                  </li>
+                  <li id="role">
+                    Digital Marketing Expert & Educator
+                  </li>
+                </ul>
+              </div>            </div>
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-4">
 
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Enter your name"
-                className="w-full p-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
-              />
-
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="w-full p-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
-              />
-
-              <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5">
-                  <img
-                    src="https://i.ibb.co/MxSQH3Dr/india.png"
-                    className="w-full h-full"
-                    alt="india flag"
-                  />
-                </span>
-
+              {/* Name */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Name
+                </label>
                 <input
-                  type="tel"
-                  name="phone"
+                  type="text"
+                  name="name"
                   required
-                  placeholder="WhatsApp number"
-                  className="w-full pl-10 pr-3 py-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
+                  placeholder="Enter your name"
+                  className="w-full p-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
                 />
               </div>
 
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                  className="w-full p-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  WhatsApp Number
+                </label>
+
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5">
+                    <img
+                      src="https://i.ibb.co/MxSQH3Dr/india.png"
+                      className="w-full h-full"
+                      alt="india flag"
+                    />
+                  </span>
+
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="WhatsApp number"
+                    className="w-full pl-10 pr-3 py-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Error */}
               {error && (
                 <p className="text-red-500 text-sm text-center">
                   {error}
                 </p>
               )}
 
+              {/* Submit */}
               <button
                 type="submit"
                 disabled={loading}
