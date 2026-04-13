@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const SuccessSection = () => {
+
+  const videoRefs = useRef([]);
+
+  const handlePlay = (currentIndex) => {
+  videoRefs.current.forEach((video, index) => {
+    if (video && index !== currentIndex) {
+      video.pause();
+    }
+  });
+};
+
   return (
     <section
       className="bg-gradient-to-b from-[#FFFFFF] to-[#FFFFFF] mt-4"
@@ -35,12 +46,17 @@ const SuccessSection = () => {
               className="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100"
             >
               <div className="success-video-container">
-                <video controls className="w-full h-full object-cover">
-                  <source
-                    src={`https://vz-52fa69c4-957.b-cdn.net/${id}/playlist.m3u8`}
-                    type="application/x-mpegURL"
-                  />
-                </video>
+               <video
+  ref={(el) => (videoRefs.current[index] = el)}
+  onPlay={() => handlePlay(index)}
+  controls
+  className="w-full h-full object-cover"
+>
+  <source
+    src={`https://vz-52fa69c4-957.b-cdn.net/${id}/playlist.m3u8`}
+    type="application/x-mpegURL"
+  />
+</video>
               </div>
             </div>
           ))}

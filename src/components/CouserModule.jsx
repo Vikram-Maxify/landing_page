@@ -13,7 +13,7 @@ const CourseModules = () => {
   const isDesktop = window.innerWidth >= 768;
 
   return (
-    <section className=" bg-[#FFFFFF]">
+    <section className=" bg-[#FFFFFF] pb-5">
       <div className="responsive-container mx-auto">
 
         {/* Course Modules */}

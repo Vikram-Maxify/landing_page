@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { FaBolt } from "react-icons/fa";
 import { MdCheckCircle, MdLock } from "react-icons/md";
 import { useRef, useState } from "react";
+import { IoMdPlay } from "react-icons/io";
 
 
 const handleRedirect = () => {
@@ -19,30 +20,31 @@ const handleRedirect = () => {
 const HeroSection = () => {
 
 
-   const [timeLeft, setTimeLeft] = useState(86400);
-  
-      useEffect(() => {
-          const timer = setInterval(() => {
-              setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-          }, 1000);
-  
-          return () => clearInterval(timer);
-      }, []);
-  
-      const hours = Math.floor(timeLeft / 3600);
-      const minutes = Math.floor((timeLeft % 3600) / 60);
-      const seconds = timeLeft % 60;
+  const [timeLeft, setTimeLeft] = useState(86400);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const hours = Math.floor(timeLeft / 3600);
+  const minutes = Math.floor((timeLeft % 3600) / 60);
+  const seconds = timeLeft % 60;
 
   const videoRef = useRef(null);
-const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-const handlePlay = () => {
-  if (videoRef.current) {
-    videoRef.current.muted = false;
-    videoRef.current.play();
-    setIsPlaying(true);
-  }
-};
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <section
       id="home"
@@ -124,28 +126,28 @@ const handlePlay = () => {
 
             <div className="relative rounded-xl shadow-2xl overflow-visible">
               <div className="relative rounded-xl shadow-2xl overflow-hidden">
-  <video
-    ref={videoRef}
-    src="https://vz-52fa69c4-957.b-cdn.net/64941448-16af-411e-9c9f-a972f8a6f55b/playlist.m3u8"
-    poster="https://vz-52fa69c4-957.b-cdn.net/742abb8e-cfed-4562-8897-462aca306b02/thumbnail_5877ee08.jpg"
-    className="w-full aspect-video object-cover rounded-xl"
-    loop
-    muted
-    playsInline
-    controls
-  />
+                <video
+                  ref={videoRef}
+                  src="https://vz-52fa69c4-957.b-cdn.net/64941448-16af-411e-9c9f-a972f8a6f55b/playlist.m3u8"
+                  poster="https://vz-52fa69c4-957.b-cdn.net/742abb8e-cfed-4562-8897-462aca306b02/thumbnail_5877ee08.jpg"
+                  className="w-full aspect-video object-cover rounded-xl"
+                  loop
+                  muted
+                  playsInline
+                  controls
+                />
 
-  {!isPlaying && (
-    <button
-      onClick={handlePlay}
-      className="absolute inset-0 flex items-center justify-center bg-black/40"
-    >
-      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition text-xl">
-        ▶
-      </div>
-    </button>
-  )}
-</div>
+                {!isPlaying && (
+                  <button
+                    onClick={handlePlay}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition text-xl">
+                      <IoMdPlay />
+                    </div>
+                  </button>
+                )}
+              </div>
             </div>
 
             <div className="mt-4 text-center px-2 mb-2">
@@ -186,26 +188,26 @@ const handlePlay = () => {
             </button>
 
             <div className="bg-[#0092B9]/10 rounded-2xl p-3 md:p-4 mobile-full-width mt-4 md:hidden">
-                                    <h3 className="text-center font-bold mb-3 text-[#111827]">
-                                        Offer Ends In:
-                                    </h3>
+              <h3 className="text-center font-bold mb-3 text-[#111827]">
+                Offer Ends In:
+              </h3>
 
-                                    <div className="flex justify-center gap-2 md:gap-3">
-                                        {[hours, minutes, seconds].map((val, i) => (
-                                            <div
-                                                key={i}
-                                                className="bg-white text-[#0092B9] rounded-xl px-3 md:px-4 py-2 flex items-center gap-1 font-bold shadow-sm"
-                                            >
-                                                <span className="text-lg md:text-2xl">
-                                                    {String(val).padStart(2, "0")}
-                                                </span>
-                                                <span className="text-xs md:text-sm">
-                                                    {["H", "M", "S"][i]}
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+              <div className="flex justify-center gap-2 md:gap-3">
+                {[hours, minutes, seconds].map((val, i) => (
+                  <div
+                    key={i}
+                    className="bg-white text-[#0092B9] rounded-xl px-3 md:px-4 py-2 flex items-center gap-1 font-bold shadow-sm"
+                  >
+                    <span className="text-lg md:text-2xl">
+                      {String(val).padStart(2, "0")}
+                    </span>
+                    <span className="text-xs md:text-sm">
+                      {["H", "M", "S"][i]}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Guarantee */}
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">

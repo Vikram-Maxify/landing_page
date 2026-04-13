@@ -26,7 +26,7 @@ const TeamSection = () => {
 
         {/* Full Image */}
         <div
-          className="w-full"
+          className="w-full pb-3"
           data-aos={isDesktop ? "fade-up" : ""}
           data-aos-delay="200"
         >
