@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import logo from "../assets/AVATAR-IMAGE.png";
+import logo from "../assets/AVATAR-IMAGE.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { submitLead, resetLeadState } from "../redux/leadSlice";
 import { useNavigate } from "react-router-dom";
@@ -57,12 +57,26 @@ const LeadPage = () => {
 
   useEffect(() => {
     if (success && lead) {
+      // Save in localStorage
       localStorage.setItem("leadData", JSON.stringify(lead));
+
+      // Save in cookies (7 days expiry)
+      const expiryDays = 7;
+      const date = new Date();
+      date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+
+      document.cookie = `leadData=${encodeURIComponent(
+        JSON.stringify(lead)
+      )}; ${expires}; path=/`;
+
+      // Navigate
       navigate("/home", { replace: true });
+
+      // Reset state
       dispatch(resetLeadState());
     }
   }, [success, lead, dispatch, navigate]);
-
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
       <div className="max-w-7xl w-full mx-auto">
@@ -127,11 +141,14 @@ const LeadPage = () => {
                   Shahid Raza
                 </p>
 
-                <p id="instructor-details" className="text-sm">
+                <p
+                  id="instructor-details"
+                  className="text-sm leading-tight"
+                  style={{ maxWidth: "250px" }}
+                >
                   I help people earn money using Social Media <br />
                   Digital Marketing Expert & Educator
-                </p>
-              </div>
+                </p>              </div>
             </div>
 
             {/* FORM */}
@@ -228,7 +245,7 @@ const LeadPage = () => {
 
               <p className="flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" />
-                30-day money-back guarantee
+                1-Day money-back guarantee
               </p>
             </div> */}
 

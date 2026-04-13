@@ -11,11 +11,10 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "../dist")));
 
 // React routing fix (IMPORTANT)
-app.get("", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
-
-const port = 5000;
+const port = 5002;
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);

@@ -22,7 +22,7 @@ const OfferSection = () => {
 
                 <div className="max-w-4xl !mx-auto">
 
-                    <div className="relative">
+                    {/* <div className="relative">
 
                         <div className="offer-badge text-xs md:text-sm">
                             Limited Time Offer
@@ -30,10 +30,8 @@ const OfferSection = () => {
 
                         <div className="bg-white text-[#111827] rounded-3xl p-6 md:p-8 lg:p-10 card-shadow mobile-padding">
 
-                            {/* TOP SECTION */}
                             <div className="flex flex-col md:flex-row items-center justify-between gap-reduced mb-8 md:mb-10 mobile-stack">
 
-                                {/* LEFT */}
                                 <div className="text-center md:text-left">
                                     <h3 className="text-base md:text-lg text-gray-600 mb-1">
                                         Actual Price:
@@ -43,7 +41,6 @@ const OfferSection = () => {
                                     </h4>
                                 </div>
 
-                                {/* TIMER */}
                                 <div className="bg-[#0092B9]/10 rounded-2xl p-3 md:p-4 mobile-full-width">
                                     <h3 className="text-center font-bold mb-3 text-[#111827]">
                                         Offer Ends In:
@@ -66,7 +63,6 @@ const OfferSection = () => {
                                     </div>
                                 </div>
 
-                                {/* RIGHT */}
                                 <div className="text-center md:text-right">
                                     <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0092B9]">
                                         ₹799
@@ -81,7 +77,6 @@ const OfferSection = () => {
 
                             </div>
 
-                            {/* FEATURES */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-reduced mb-8 md:mb-10 mobile-grid-gap">
 
                                 <div className="bg-[#0092B9]/10 rounded-2xl p-4 md:p-5 text-center mobile-padding">
@@ -113,7 +108,6 @@ const OfferSection = () => {
 
                             </div>
 
-                            {/* CTA */}
                             <a
                                 href="#"
                                 onClick={(e) => {
@@ -142,14 +136,13 @@ const OfferSection = () => {
                                 <MdShoppingCart size={20} />
                                 Abhi Course Join Karein – ₹799
                             </a>
-                            {/* FOOT TEXT */}
                             <p className="text-center mt-5 text-gray-600 text-sm flex items-center justify-center gap-2 mobile-text-center">
                                 <MdVerified className="text-[#0092B9]" />
-                                Secure payment • 30-day money-back guarantee • Lifetime access
+                                Secure payment • 1-Day money-back guarantee • Lifetime access
                             </p>
 
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* BOTTOM */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-reduced mt-8 md:mt-10 text-center mobile-grid-gap">

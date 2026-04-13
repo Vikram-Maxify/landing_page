@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaBolt } from "react-icons/fa";
 import { MdCheckCircle, MdLock } from "react-icons/md";
 import { useRef, useState } from "react";
@@ -17,6 +17,21 @@ const handleRedirect = () => {
 };
 
 const HeroSection = () => {
+
+
+   const [timeLeft, setTimeLeft] = useState(86400);
+  
+      useEffect(() => {
+          const timer = setInterval(() => {
+              setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+          }, 1000);
+  
+          return () => clearInterval(timer);
+      }, []);
+  
+      const hours = Math.floor(timeLeft / 3600);
+      const minutes = Math.floor((timeLeft % 3600) / 60);
+      const seconds = timeLeft % 60;
 
   const videoRef = useRef(null);
 const [isPlaying, setIsPlaying] = useState(false);
@@ -169,6 +184,29 @@ const handlePlay = () => {
             >
               <span><FaBolt /> </span>Enroll Now – ₹799
             </button>
+
+            <div className="bg-[#0092B9]/10 rounded-2xl p-3 md:p-4 mobile-full-width mt-4 md:hidden">
+                                    <h3 className="text-center font-bold mb-3 text-[#111827]">
+                                        Offer Ends In:
+                                    </h3>
+
+                                    <div className="flex justify-center gap-2 md:gap-3">
+                                        {[hours, minutes, seconds].map((val, i) => (
+                                            <div
+                                                key={i}
+                                                className="bg-white text-[#0092B9] rounded-xl px-3 md:px-4 py-2 flex items-center gap-1 font-bold shadow-sm"
+                                            >
+                                                <span className="text-lg md:text-2xl">
+                                                    {String(val).padStart(2, "0")}
+                                                </span>
+                                                <span className="text-xs md:text-sm">
+                                                    {["H", "M", "S"][i]}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
             {/* Guarantee */}
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">
               <div className="p-6 bg-gradient-to-t from-green-100 via-green-200 to-green-300 rounded-3xl shadow-lg text-center">
