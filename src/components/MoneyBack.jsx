@@ -54,11 +54,11 @@ const GuaranteeSection = () => {
             <MdAssignmentReturn className="text-4xl md:text-5xl mx-auto mb-4" />
 
             <h3 className="text-xl md:text-2xl font-bold mb-3">
-              Easy Refund
+              Easy Return
             </h3>
 
             <p className="text-green-100 text-sm md:text-base">
-              Simple process, 24 hours me refund
+              Simple process, Eran in 24 hours
             </p>
           </div>
 

@@ -5,7 +5,7 @@ const TeamSection = () => {
   const isDesktop = window.innerWidth >= 768;
 
   return (
-    <section id="gallery" className=" bg-white">
+    <section id="gallery" className=" mt-10 bg-white">
       <div className="responsive-container mx-auto">
 
         {/* Section Heading */}
