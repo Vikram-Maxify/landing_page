@@ -127,14 +127,10 @@ const LeadPage = () => {
                   Shahid Raza
                 </p>
 
-                <ul className="text-sm list-disc pl-4 space-y-1">
-                  <li id="tagline">
-                    I help people earn money using Social Media
-                  </li>
-                  <li id="role">
-                    Digital Marketing Expert & Educator
-                  </li>
-                </ul>
+                <p id="instructor-details" className="text-sm">
+                  I help people earn money using Social Media <br />
+                  Digital Marketing Expert & Educator
+                </p>
               </div>
             </div>
 
@@ -214,7 +210,7 @@ const LeadPage = () => {
 
             <hr className="my-6" />
 
-            <div className="space-y-2 text-sm">
+            {/* <div className="space-y-2 text-sm">
               <p className="flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" />
                 Full lifetime access
@@ -234,7 +230,7 @@ const LeadPage = () => {
                 <FaCheckCircle className="text-green-500" />
                 30-day money-back guarantee
               </p>
-            </div>
+            </div> */}
 
           </div>
 

@@ -66,8 +66,10 @@ const InstructorSection = () => {
                   <span style={{ color: "#0092B9" }}>Co-Founder</span> and{" "}
                   <span style={{ color: "#0092B9" }}>CEO</span> of Maxify Web Solutions.
                 </strong>{" "}
-                I've been working in the digital marketing industry for the past
-                5 years and have been running my own company for 3+ years.
+                I've been working in the digital marketing
+                industry for the past 5 years and have been running my own company for 3+ years. I've worked
+                closely with real businesses at ground level and understand exactly where most people
+                struggle in turning social media into income.
               </p>
 
               <div className="p-4 md:p-6 rounded-2xl gradient-bg text-white mobile-padding">

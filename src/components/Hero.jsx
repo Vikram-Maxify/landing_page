@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { FaBolt } from "react-icons/fa";
 import { MdCheckCircle, MdLock } from "react-icons/md";
 
 
@@ -14,7 +15,25 @@ const handleRedirect = () => {
   window.location.href = finalUrl;
 };
 
+
+
+
 const HeroSection = () => {
+
+  const videoRef = useRef
+    (null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.muted = true; 
+        videoRef.current.play().catch(() => { });
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="home"
@@ -96,13 +115,14 @@ const HeroSection = () => {
 
             <div className="relative rounded-xl shadow-2xl overflow-visible">
               <video
+                ref={videoRef}
                 src="https://vz-52fa69c4-957.b-cdn.net/64941448-16af-411e-9c9f-a972f8a6f55b/playlist.m3u8"
                 poster="https://vz-52fa69c4-957.b-cdn.net/742abb8e-cfed-4562-8897-462aca306b02/thumbnail_5877ee08.jpg"
                 className="w-full aspect-video object-cover rounded-xl shadow-xl"
                 controls
+                playsInline
               />
             </div>
-
             <div className="mt-4 text-center px-2 mb-2">
               <h4 className="responsive-heading-2 font-bold text-[#111827]">
                 Complete Social Media Income System
@@ -135,11 +155,10 @@ const HeroSection = () => {
             {/* CTA */}
             <button
               onClick={handleRedirect}
-              className="w-full px-6 md:px-8 py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg shadow-xl hover:scale-105 transition flex items-center justify-center mt-5 bg-[#0092B9]"
+              className="animate-pulseScale w-full px-6 md:px-8 py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg shadow-xl hover:scale-105 transition flex items-center justify-center mt-5 bg-[#0092B9]"
             >
-              Enroll Now – ₹799
-            </button>
-            {/* Guarantee */}
+              <span><FaBolt /> </span>Enroll Now – ₹799
+            </button>            {/* Guarantee */}
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">
               <div className="p-6 bg-gradient-to-t from-green-100 via-green-200 to-green-300 rounded-3xl shadow-lg text-center">
                 <h2 className="text-2xl md:text-3xl font-extrabold text-green-900">
