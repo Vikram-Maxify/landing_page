@@ -114,11 +114,12 @@ const LeadPage = () => {
 
             <p className="mt-2 font-inter font-semibold text-xs sm:text-sm text-left sm:text-center">
               Register now to watch free video 🚀
-            </p>            {/* Profile */}
+            </p>
+            {/* Profile */}
             <div className="flex items-center shadow-md rounded-lg gap-3 p-3 mt-4 mb-4">
               <img
                 src={logo}
-                className="w-14 h-14 rounded-full object-cover border"
+                className="w-20 h-20 rounded-full object-cover border"
                 alt="profile"
               />
               <div id="instructor-info">
@@ -126,15 +127,12 @@ const LeadPage = () => {
                   Shahid Raza
                 </p>
 
-                <ul className="text-sm list-disc pl-4 space-y-1">
-                  <li id="tagline">
-                    I help people earn money using Social Media
-                  </li>
-                  <li id="role">
-                    Digital Marketing Expert & Educator
-                  </li>
-                </ul>
-              </div>            </div>
+                <p id="instructor-details" className="text-sm">
+                  I help people earn money using Social Media <br />
+                  Digital Marketing Expert & Educator
+                </p>
+              </div>
+            </div>
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -212,7 +210,7 @@ const LeadPage = () => {
 
             <hr className="my-6" />
 
-            <div className="space-y-2 text-sm">
+            {/* <div className="space-y-2 text-sm">
               <p className="flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" />
                 Full lifetime access
@@ -232,7 +230,7 @@ const LeadPage = () => {
                 <FaCheckCircle className="text-green-500" />
                 30-day money-back guarantee
               </p>
-            </div>
+            </div> */}
 
           </div>
 

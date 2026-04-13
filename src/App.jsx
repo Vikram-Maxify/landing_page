@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import LeadPopup from "./pages/popup";
 import HomePage from "./pages/HomePage";
@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 function App() {
 
   // AOS Animation
-    useEffect(() => {
+  useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
@@ -17,11 +17,9 @@ function App() {
       disable: window.innerWidth < 768,
     });
 
-    // ✅ IMPORTANT FIX
     setTimeout(() => {
       AOS.refresh();
     }, 300);
-
   }, []);
 
   // Facebook Pixel
@@ -54,13 +52,31 @@ function App() {
     window.fbq("track", "PageView");
   }, []);
 
+  // 🔐 Protected Wrapper
+  const ProtectedRoute = ({ children }) => {
+    const leadData = localStorage.getItem("leadData");
+
+    if (!leadData) {
+      return <Navigate to="/" replace />;
+    }
+
+    return children;
+  };
+
   return (
     <Routes>
       {/* Default → Form */}
       <Route path="/" element={<LeadPopup />} />
 
-      {/* After submit → Home */}
-      <Route path="/home" element={<HomePage />} />
+      {/* 🔐 Protected Home */}
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        }
+      />
 
       {/* 404 fallback */}
       <Route path="*" element={<h1>404 Not Found</h1>} />
