@@ -114,11 +114,12 @@ const LeadPage = () => {
 
             <p className="mt-2 font-inter font-semibold text-xs sm:text-sm text-left sm:text-center">
               Register now to watch free video 🚀
-            </p>            {/* Profile */}
+            </p>
+            {/* Profile */}
             <div className="flex items-center shadow-md rounded-lg gap-3 p-3 mt-4 mb-4">
               <img
                 src={logo}
-                className="w-14 h-14 rounded-full object-cover border"
+                className="w-20 h-20 rounded-full object-cover border"
                 alt="profile"
               />
               <div id="instructor-info">
@@ -134,7 +135,8 @@ const LeadPage = () => {
                     Digital Marketing Expert & Educator
                   </li>
                 </ul>
-              </div>            </div>
+              </div>
+            </div>
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-4">
