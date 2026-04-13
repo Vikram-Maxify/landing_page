@@ -64,17 +64,18 @@ const LeadPage = () => {
   }, [success, lead, dispatch, navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-start lg:items-center justify-center px-4 py-6">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
       <div className="max-w-7xl w-full mx-auto">
 
-        <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-stretch">
+        <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-stretch justify-center">
 
           {/* LEFT CARD (HIDDEN ON MOBILE) */}
           <div className="hidden lg:block flex-1 bg-white rounded-2xl shadow overflow-hidden">
 
             <img
               src={pic}
-              className="w-full h-auto object-contain" alt="course"
+              className="w-full h-auto object-contain"
+              alt="course"
             />
 
             <div className="p-6">
@@ -105,7 +106,7 @@ const LeadPage = () => {
           </div>
 
           {/* RIGHT FORM */}
-          <div className="w-full max-w-md lg:w-[420px] bg-white rounded-2xl shadow p-6">
+          <div className="w-full max-w-md lg:w-[420px] bg-white rounded-2xl shadow p-6 mx-auto">
 
             <h2 className="text-xl sm:text-2xl font-bold text-center">
               Learn 3 Powerful Ways to Turn Social Media Into Income
