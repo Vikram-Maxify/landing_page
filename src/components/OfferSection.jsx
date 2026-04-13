@@ -116,12 +116,32 @@ const OfferSection = () => {
                             {/* CTA */}
                             <a
                                 href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+
+                                    const data = localStorage.getItem("leadData");
+                                    const { email, phone } = JSON.parse(data || "{}");
+
+                                    if (!email || !phone) {
+                                        alert("Please fill the form first");
+                                        return;
+                                    }
+
+                                    if (!email || !phone) {
+                                        alert("Please fill the form first");
+                                        return;
+                                    }
+
+                                    const baseUrl = "https://demo1.go-drop.in/payment/complete-social-media-income-system";
+                                    const finalUrl = `${baseUrl}?email=${email}&phone=${phone}`;
+
+                                    window.location.href = finalUrl;
+                                }}
                                 className="w-full flex items-center justify-center gap-2 bg-[#0092B9] text-white font-bold py-4 rounded-2xl shadow-xl hover:scale-105 transition tap-target"
                             >
                                 <MdShoppingCart size={20} />
                                 Abhi Course Join Karein – ₹799
                             </a>
-
                             {/* FOOT TEXT */}
                             <p className="text-center mt-5 text-gray-600 text-sm flex items-center justify-center gap-2 mobile-text-center">
                                 <MdVerified className="text-[#0092B9]" />

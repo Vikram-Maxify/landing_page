@@ -1,6 +1,19 @@
 import React from "react";
 import { MdCheckCircle, MdLock } from "react-icons/md";
 
+
+const handleRedirect = () => {
+  const data = localStorage.getItem("leadData");
+  const { email, phone } = JSON.parse(data || "{}");
+
+
+  const baseUrl = "https://demo1.go-drop.in/payment/complete-social-media-income-system";
+
+  const finalUrl = `${baseUrl}?email=${email}&phone=${phone}`;
+
+  window.location.href = finalUrl;
+};
+
 const HeroSection = () => {
   return (
     <section
@@ -63,8 +76,8 @@ const HeroSection = () => {
             </div>
 
             {/* CTA */}
-            <a
-              href="https://demo1.go-drop.in/payment/complete-social-media-income-system"
+            <button
+              onClick={handleRedirect}
               className="hidden sm:flex w-full md:w-auto px-6 md:px-8 py-4 md:py-5 rounded-2xl bg-[#0092B9] text-white text-base md:text-lg font-extrabold shadow-2xl hover:scale-105 transition flex-col md:flex-row items-center gap-2"
             >
               <span className="flex items-center gap-2">
@@ -74,7 +87,7 @@ const HeroSection = () => {
               <span className="text-sm opacity-90 flex items-center gap-1">
                 <MdLock /> Secure Checkout | Lifetime Access
               </span>
-            </a>
+            </button>
 
           </div>
 
@@ -120,13 +133,12 @@ const HeroSection = () => {
             </div>
 
             {/* CTA */}
-            <a
-              href="https://demo1.go-drop.in/payment/complete-social-media-income-system"
+            <button
+              onClick={handleRedirect}
               className="w-full px-6 md:px-8 py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg shadow-xl hover:scale-105 transition flex items-center justify-center mt-5 bg-[#0092B9]"
             >
               Enroll Now – ₹799
-            </a>
-
+            </button>
             {/* Guarantee */}
             <div className="mx-auto mt-6 mb-8 lg:hidden max-w-md">
               <div className="p-6 bg-gradient-to-t from-green-100 via-green-200 to-green-300 rounded-3xl shadow-lg text-center">
