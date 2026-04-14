@@ -32,15 +32,39 @@ const PaymentSuccess = () => {
   } = state || {};
 
   useEffect(() => {
+    // ❌ Agar state hi nahi hai to fire mat karo (direct open case)
+    if (!state || !paymentId) return;
+
+    const alreadyTracked = sessionStorage.getItem("purchaseTracked");
+
+    const firePixel = () => {
+      if (window.fbq && !alreadyTracked) {
+        window.fbq("track", "Purchase", {
+          value: amount || 0,
+          currency: "INR",
+          content_name: courseTitle,
+          content_type: "course",
+          content_ids: [paymentId], // better tracking
+        });
+
+        sessionStorage.setItem("purchaseTracked", "true");
+      }
+    };
+
     if (window.fbq) {
-      window.fbq("track", "Purchase", {
-        value: amount || 0,
-        currency: "INR",
-        content_name: courseTitle,
-        payment_id: paymentId,
-      });
+      firePixel();
+    } else {
+      // 🔥 wait until fbq loads
+      const interval = setInterval(() => {
+        if (window.fbq) {
+          firePixel();
+          clearInterval(interval);
+        }
+      }, 200);
+
+      return () => clearInterval(interval);
     }
-  }, []);
+  }, [state, paymentId, amount, courseTitle]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#050816] via-[#0b1225] to-black px-4">
