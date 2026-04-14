@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "./api";
 
-// ✅ API call with axios
+// ✅ API call with axios + credentials
 export const submitLead = createAsyncThunk(
   "lead/submitLead",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await axios.post(
-        "https://maxifyacademy.com/api/social-lead/lead",
+      const res = await api.post(
+        "/social-lead/lead",
         data,
         {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true, // ✅ ADD THIS
         }
       );
 
       return res.data;
     } catch (error) {
-      // Axios error handling
       if (error.response) {
         return rejectWithValue(error.response.data);
       } else {
@@ -53,7 +53,7 @@ const leadSlice = createSlice({
       .addCase(submitLead.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.lead = action.payload?.lead; // safer
+        state.lead = action.payload?.lead;
       })
       .addCase(submitLead.rejected, (state, action) => {
         state.loading = false;

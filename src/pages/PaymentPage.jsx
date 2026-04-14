@@ -116,6 +116,7 @@ const PaymentPage = () => {
           return;
         }
 
+        /* ================= CREATE ORDER ================= */
         const orderRes = await dispatch(
           createOrder({
             amount: finalPrice,
@@ -135,6 +136,17 @@ const PaymentPage = () => {
 
         const { key, order_id, amount } = orderRes.payload;
 
+        /* ================= FB INITIATE CHECKOUT ================= */
+        if (window.fbq) {
+          window.fbq("track", "InitiateCheckout", {
+            value: finalPrice,
+            currency: "INR",
+            content_name: course.title,
+            content_type: "course",
+            content_ids: [course._id],
+          });
+        }
+
         const options = {
           key,
           amount,
@@ -145,8 +157,10 @@ const PaymentPage = () => {
 
           prefill: { email, contact: phone },
 
+          /* ================= SUCCESS ================= */
           handler: async (response) => {
             try {
+              /* VERIFY */
               const verifyRes = await dispatch(
                 verifyPayment({
                   razorpay_order_id: response.razorpay_order_id,
@@ -164,11 +178,13 @@ const PaymentPage = () => {
                 return;
               }
 
+              /* CREATE PURCHASE */
               const purchaseRes = await dispatch(
                 createPurchase({
                   course_id: course._id,
                   is_buy: true,
                   purchased_amount: finalPrice,
+                  coupon_amount: 0,
                   email,
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_order_id: response.razorpay_order_id,
@@ -177,9 +193,16 @@ const PaymentPage = () => {
               );
 
               if (!createPurchase.fulfilled.match(purchaseRes)) {
-                console.warn("Purchase save failed but payment success");
+                setPopup({
+                  show: true,
+                  type: "error",
+                  message: "Purchase processing failed",
+                });
+                return;
+              }
 
-                // ❗ STILL REDIRECT
+              /* ================= ALREADY PURCHASED ================= */
+              if (purchaseRes.payload?.alreadyPurchased) {
                 navigate("/payment-success", {
                   replace: true,
                   state: {
@@ -189,12 +212,24 @@ const PaymentPage = () => {
                     orderId: response.razorpay_order_id,
                     courseTitle: course.title,
                     amount: finalPrice,
+                    alreadyPurchased: true,
                   },
                 });
-
                 return;
               }
 
+              /* ================= FB PURCHASE EVENT ================= */
+              if (window.fbq) {
+                window.fbq("track", "Purchase", {
+                  value: finalPrice,
+                  currency: "INR",
+                  content_name: course.title,
+                  content_type: "course",
+                  content_ids: [course._id],
+                });
+              }
+
+              /* ================= SUCCESS NAVIGATION ================= */
               navigate("/payment-success", {
                 replace: true,
                 state: {
@@ -206,16 +241,18 @@ const PaymentPage = () => {
                   amount: finalPrice,
                 },
               });
-            } catch (err) {
-              console.error(err);
+
+            } catch (error) {
+              console.error(error);
               setPopup({
                 show: true,
                 type: "error",
-                message: "Payment done but error occurred",
+                message: "Payment completed but processing failed",
               });
             }
           },
 
+          /* ================= CANCEL ================= */
           modal: {
             ondismiss: () => {
               dispatch(
@@ -225,7 +262,7 @@ const PaymentPage = () => {
                   mobile: phone,
                   amount: finalPrice,
                   order_id,
-                  reason: "User cancelled",
+                  reason: "User cancelled payment",
                 })
               );
 
@@ -237,11 +274,12 @@ const PaymentPage = () => {
             },
           },
 
-          theme: { color: "#0092B9" },
+          theme: { color: "#06b6d4" },
         };
 
         const rzp = new window.Razorpay(options);
 
+        /* ================= PAYMENT FAILED ================= */
         rzp.on("payment.failed", (response) => {
           dispatch(
             saveFailedPayment({
@@ -250,7 +288,10 @@ const PaymentPage = () => {
               mobile: phone,
               amount: finalPrice,
               order_id,
-              reason: response.error?.description || "Payment failed",
+              reason:
+                response.error?.description ||
+                response.error?.reason ||
+                "Payment failed",
             })
           );
 
@@ -262,6 +303,7 @@ const PaymentPage = () => {
         });
 
         rzp.open();
+
       } catch (err) {
         console.error(err);
         setPopup({
@@ -274,7 +316,6 @@ const PaymentPage = () => {
 
     startPayment();
   }, [course, dispatch, navigate]);
-
   /* ================= UI ================= */
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-black to-blue-900">

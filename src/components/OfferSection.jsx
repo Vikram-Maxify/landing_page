@@ -126,7 +126,7 @@ const OfferSection = () => {
                                         return;
                                     }
 
-                                    const baseUrl = "https://maxifyacademy.com/payment/complete-social-media-income-system";
+                                    const baseUrl = "https://maxifyacademy.com /payment/complete-social-media-income-system";
                                     const finalUrl = `${baseUrl}?email=${email}&phone=${phone}`;
 
                                     window.location.href = finalUrl;

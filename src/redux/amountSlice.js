@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "./api";
 
 /* =====================================================
    1️⃣ CREATE ORDER (LOGIN + GUEST SUPPORT)
@@ -15,8 +15,8 @@ export const createOrder = createAsyncThunk(
         payload.phone = phone;
       }
 
-      const res = await axios
-      .post("https://maxifyacademy.com/api/amount/create-order", payload);
+      const res = await api
+      .post("/amount/create-order", payload);
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -33,7 +33,7 @@ export const verifyPayment = createAsyncThunk(
   "amount/verifyPayment",
   async (paymentData, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://maxifyacademy.com/api/amount/verify-payment", paymentData);
+      const res = await api.post("/amount/verify-payment", paymentData);
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -62,7 +62,7 @@ export const createPurchase = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post("https://maxifyacademy.com/api/amount/create-purchase", {
+      const res = await api.post("/amount/create-purchase", {
         course_id,
         is_buy,
         purchased_amount,
@@ -89,7 +89,7 @@ export const saveFailedPayment = createAsyncThunk(
   "amount/saveFailedPayment",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://maxifyacademy.com/api/payment/failure", data);
+      const res = await api.post("/payment/failure", data);
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -106,7 +106,7 @@ export const enrollCourse = createAsyncThunk(
   "amount/enrollCourse",
   async ({ course_id }, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://maxifyacademy.com/api/purchase/enroll", { course_id });
+      const res = await api.post("/purchase/enroll", { course_id });
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -123,7 +123,7 @@ export const getPurchasesByUser = createAsyncThunk(
   "amount/getPurchasesByUser",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get("https://maxifyacademy.com/api/purchase/user/my-purchases");
+      const res = await api.get("/purchase/user/my-purchases");
       return res.data;
     } catch (err) {
       return rejectWithValue(
