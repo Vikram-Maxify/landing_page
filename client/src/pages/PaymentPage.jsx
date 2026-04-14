@@ -13,11 +13,11 @@ const PaymentPage = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const pixelRef = useRef({
-  initiate: false,
-  purchase: false,
-});
+    initiate: false,
+    purchase: false,
+  });
 
   const { courseBySlug: course } = useSelector((state) => state.courses);
 
@@ -86,6 +86,45 @@ const PaymentPage = () => {
   // }, [course]);
 
   /* ================= AUTO PAYMENT ================= */
+
+  useEffect(() => {
+    if (!course) return;
+
+    const finalPrice =
+      course?.discount_price > 0
+        ? course.discount_price
+        : course?.price;
+
+    const alreadyTracked = sessionStorage.getItem("initiateCheckout");
+
+    const firePixel = () => {
+      if (window.fbq && !alreadyTracked) {
+        window.fbq("track", "InitiateCheckout", {
+          value: finalPrice,
+          currency: "INR",
+          content_name: course.title,
+          content_type: "course",
+          content_ids: [course._id],
+        });
+
+        sessionStorage.setItem("initiateCheckout", "true");
+      }
+    };
+
+    if (window.fbq) {
+      firePixel();
+    } else {
+      const interval = setInterval(() => {
+        if (window.fbq) {
+          firePixel();
+          clearInterval(interval);
+        }
+      }, 200);
+
+      return () => clearInterval(interval);
+    }
+  }, [course]);
+
   useEffect(() => {
     const startPayment = async () => {
       if (!course || triggeredRef.current) return;
@@ -142,17 +181,7 @@ const PaymentPage = () => {
         const { key, order_id, amount } = orderRes.payload;
 
         /* ================= FB INITIATE CHECKOUT ================= */
-        if (window.fbq && !pixelRef.current.initiate) {
-          window.fbq("track", "InitiateCheckout", {
-            value: finalPrice,
-            currency: "INR",
-            content_name: course.title,
-            content_type: "course",
-            content_ids: [course._id],
-          });
 
-          pixelRef.current.initiate = true;
-        }
         const options = {
           key,
           amount,
@@ -225,7 +254,9 @@ const PaymentPage = () => {
               }
 
               /* ================= FB PURCHASE EVENT ================= */
-              if (window.fbq && !pixelRef.current.purchase) {
+              const purchaseTracked = sessionStorage.getItem("purchaseTracked");
+
+              if (window.fbq && !purchaseTracked) {
                 window.fbq("track", "Purchase", {
                   value: finalPrice,
                   currency: "INR",
@@ -234,9 +265,8 @@ const PaymentPage = () => {
                   content_ids: [course._id],
                 });
 
-                pixelRef.current.purchase = true;
-              }
-              /* ================= SUCCESS NAVIGATION ================= */
+                sessionStorage.setItem("purchaseTracked", "true");
+              }              /* ================= SUCCESS NAVIGATION ================= */
               navigate("/payment-success", {
                 replace: true,
                 state: {
