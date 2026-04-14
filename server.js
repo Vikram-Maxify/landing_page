@@ -6,13 +6,12 @@ const path = require("path");
 app.use(cors());
 
 // API route
-
 // Static files
-app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "./client/dist")));
 
 // React routing fix (IMPORTANT)
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/index.html"));
+  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
 });
 const port = 5002;
 
