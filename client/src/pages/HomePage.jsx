@@ -11,9 +11,6 @@ import Footer from '../components/Footer'
 
 const HomePage = () => {
 
-  const pixelRef = useRef({
-    view: false,
-  });
 
   // 🎯 Refs for videos
   const heroVideoRef = useRef(null);
@@ -22,16 +19,33 @@ const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    try {
-      if (window.fbq && !pixelRef.current.view) {
+    const alreadyTracked = sessionStorage.getItem("viewContentTracked");
+
+    const firePixel = () => {
+      if (window.fbq && !alreadyTracked) {
         window.fbq("track", "ViewContent");
 
-        pixelRef.current.view = true;
+        sessionStorage.setItem("viewContentTracked", "true");
+      }
+    };
+
+    try {
+      if (window.fbq) {
+        firePixel();
+      } else {
+        // 🔥 wait until fbq loads (fix delay)
+        const interval = setInterval(() => {
+          if (window.fbq) {
+            firePixel();
+            clearInterval(interval);
+          }
+        }, 200);
+
+        return () => clearInterval(interval);
       }
     } catch (err) {
       console.log("FB Pixel error:", err);
     }
-
   }, []);
 
   // 🎯 Main Control Function

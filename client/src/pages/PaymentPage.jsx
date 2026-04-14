@@ -124,7 +124,7 @@ const PaymentPage = () => {
       return () => clearInterval(interval);
     }
   }, [course]);
-
+  
   useEffect(() => {
     const startPayment = async () => {
       if (!course || triggeredRef.current) return;
@@ -254,19 +254,18 @@ const PaymentPage = () => {
               }
 
               /* ================= FB PURCHASE EVENT ================= */
-              const purchaseTracked = sessionStorage.getItem("purchaseTracked");
+              // if (window.fbq && !pixelRef.current.purchase) {
+              //   window.fbq("track", "Purchase", {
+              //     value: finalPrice,
+              //     currency: "INR",
+              //     content_name: course.title,
+              //     content_type: "course",
+              //     content_ids: [course._id],
+              //   });
 
-              if (window.fbq && !purchaseTracked) {
-                window.fbq("track", "Purchase", {
-                  value: finalPrice,
-                  currency: "INR",
-                  content_name: course.title,
-                  content_type: "course",
-                  content_ids: [course._id],
-                });
-
-                sessionStorage.setItem("purchaseTracked", "true");
-              }              /* ================= SUCCESS NAVIGATION ================= */
+              //   pixelRef.current.purchase = true;
+              // }
+              /* ================= SUCCESS NAVIGATION ================= */
               navigate("/payment-success", {
                 replace: true,
                 state: {

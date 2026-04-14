@@ -31,16 +31,16 @@ const PaymentSuccess = () => {
     amount = "",
   } = state || {};
 
-  // useEffect(() => {
-  //   if (window.fbq) {
-  //     window.fbq("track", "Success-Purchase", {
-  //       value: amount || 0,
-  //       currency: "INR",
-  //       content_name: courseTitle,
-  //       payment_id: paymentId,
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq("track", "Purchase", {
+        value: amount || 0,
+        currency: "INR",
+        content_name: courseTitle,
+        payment_id: paymentId,
+      });
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#050816] via-[#0b1225] to-black px-4">
