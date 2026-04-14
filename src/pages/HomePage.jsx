@@ -17,8 +17,13 @@ const HomePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
 
+    if (window.fbq) {
+      window.fbq("track", "ViewContent");
+    }
+
+  }, []);
+  
   // 🎯 Main Control Function
   const handleVideoPlay = (type, index = null) => {
 
@@ -47,25 +52,25 @@ const HomePage = () => {
     }
   };
 
-    return (
-      <>
-        <HeroSection
-          videoRef={heroVideoRef}
-          onPlay={() => handleVideoPlay("hero")}
-        />
+  return (
+    <>
+      <HeroSection
+        videoRef={heroVideoRef}
+        onPlay={() => handleVideoPlay("hero")}
+      />
 
-        <SuccessSection
-          videoRefs={successVideoRefs}
-          onPlay={(index) => handleVideoPlay("success", index)}
-        />
+      <SuccessSection
+        videoRefs={successVideoRefs}
+        onPlay={(index) => handleVideoPlay("success", index)}
+      />
 
-        <InstructorSection />
-        <CourseModules />
-        <TeamSection />
-        <GuaranteeSection />
-        <Footer />
-      </>
-    )
-  }
+      <InstructorSection />
+      <CourseModules />
+      <TeamSection />
+      <GuaranteeSection />
+      <Footer />
+    </>
+  )
+}
 
-  export default HomePage;
+export default HomePage;

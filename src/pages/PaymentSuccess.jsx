@@ -31,6 +31,17 @@ const PaymentSuccess = () => {
     amount = "",
   } = state || {};
 
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq("track", "Success-Purchase", {
+        value: amount || 0,
+        currency: "INR",
+        content_name: courseTitle,
+        payment_id: paymentId,
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#050816] via-[#0b1225] to-black px-4">
       <div className="w-full max-w-md rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl p-8 text-center text-white">
@@ -106,9 +117,8 @@ const Detail = ({ label, value, highlight }) => (
   <div className="flex justify-between items-center">
     <span className="text-gray-400">{label}</span>
     <span
-      className={`font-medium ${
-        highlight ? "text-emerald-400 font-mono" : ""
-      }`}
+      className={`font-medium ${highlight ? "text-emerald-400 font-mono" : ""
+        }`}
     >
       {value}
     </span>

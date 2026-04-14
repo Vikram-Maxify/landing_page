@@ -39,6 +39,12 @@ const LeadPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq("track", "PageView");
+    }
+  }, []);
+
   const { loading, success, error, lead } = useSelector(
     (state) => state.lead
   );
@@ -174,15 +180,15 @@ const LeadPage = () => {
                   Email
                 </label>
                 <input
-  type="email"
-  name="email"
-  required
-  inputMode="email"
-  autoComplete="email"
-  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-  placeholder="Enter your email"
-  className="w-full p-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
-/>
+                  type="email"
+                  name="email"
+                  required
+                  inputMode="email"
+                  autoComplete="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  placeholder="Enter your email"
+                  className="w-full p-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
+                />
               </div>
 
               {/* Phone */}
@@ -201,16 +207,16 @@ const LeadPage = () => {
                   </span>
 
                   <input
-                  type="tel"
-                  name="phone"
-                  required
-                  placeholder="WhatsApp number"
-                  maxLength={10}
-                  onInput={(e) => {
-                    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
-                  }}
-                  className="w-full pl-10 pr-3 py-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
-                />
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="WhatsApp number"
+                    maxLength={10}
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                    }}
+                    className="w-full pl-10 pr-3 py-3 rounded-xl border focus:ring-2 focus:ring-blue-500 text-sm"
+                  />
                 </div>
               </div>
 

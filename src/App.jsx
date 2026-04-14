@@ -4,7 +4,6 @@ import "./App.css";
 import LeadPopup from "./pages/popup";
 import HomePage from "./pages/HomePage";
 import PaymentPage from "./pages/PaymentPage";
-import PaymentSuccess from "./pages/PaymentSuccess";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PaymentSuccess from "./pages/PaymentSuccess";
@@ -118,7 +117,7 @@ function App() {
           <ProtectedRoute>
             <PaymentSuccess/>
             </ProtectedRoute>
-        }
+        }/>
 
       {/* 404 */}
       <Route path="*" element={<h1>404 Not Found</h1>} />

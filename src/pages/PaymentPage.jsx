@@ -27,14 +27,14 @@ const PaymentPage = () => {
 
   /* ================= AUTO REDIRECT AFTER POPUP ================= */
   useEffect(() => {
-  if (popup.show && popup.type !== "success") {
-    const timer = setTimeout(() => {
-      navigate("/home", { replace: true });
-    }, 2500);
+    if (popup.show && popup.type !== "success") {
+      const timer = setTimeout(() => {
+        navigate("/home", { replace: true });
+      }, 2500);
 
-    return () => clearTimeout(timer);
-  }
-}, [popup.show, popup.type, navigate]);
+      return () => clearTimeout(timer);
+    }
+  }, [popup.show, popup.type, navigate]);
 
   /* ================= LOAD RAZORPAY ================= */
   const loadRazorpay = () => {
@@ -63,6 +63,22 @@ const PaymentPage = () => {
       dispatch(getCourseBySlug(slug));
     }
   }, [slug, dispatch]);
+
+  useEffect(() => {
+    if (course && window.fbq) {
+      const finalPrice =
+        course?.discount_price > 0
+          ? course.discount_price
+          : course?.price;
+
+      window.fbq("track", "InitiateCheckout", {
+        content_name: course.title,
+        content_category: "Course",
+        value: finalPrice,
+        currency: "INR",
+      });
+    }
+  }, [course]);
 
   /* ================= AUTO PAYMENT ================= */
   useEffect(() => {
@@ -161,23 +177,23 @@ const PaymentPage = () => {
               );
 
               if (!createPurchase.fulfilled.match(purchaseRes)) {
-  console.warn("Purchase save failed but payment success");
+                console.warn("Purchase save failed but payment success");
 
-  // ❗ STILL REDIRECT
-  navigate("/payment-success", {
-    replace: true,
-    state: {
-      email,
-      phone,
-      paymentId: response.razorpay_payment_id,
-      orderId: response.razorpay_order_id,
-      courseTitle: course.title,
-      amount: finalPrice,
-    },
-  });
+                // ❗ STILL REDIRECT
+                navigate("/payment-success", {
+                  replace: true,
+                  state: {
+                    email,
+                    phone,
+                    paymentId: response.razorpay_payment_id,
+                    orderId: response.razorpay_order_id,
+                    courseTitle: course.title,
+                    amount: finalPrice,
+                  },
+                });
 
-  return;
-}
+                return;
+              }
 
               navigate("/payment-success", {
                 replace: true,
