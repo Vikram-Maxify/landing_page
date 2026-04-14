@@ -11,6 +11,10 @@ import Footer from '../components/Footer'
 
 const HomePage = () => {
 
+  const pixelRef = useRef({
+    view: false,
+  });
+
   // 🎯 Refs for videos
   const heroVideoRef = useRef(null);
   const successVideoRefs = useRef([]);
@@ -18,12 +22,18 @@ const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (window.fbq) {
-      window.fbq("track", "ViewContent");
+    try {
+      if (window.fbq && !pixelRef.current.view) {
+        window.fbq("track", "ViewContent");
+
+        pixelRef.current.view = true;
+      }
+    } catch (err) {
+      console.log("FB Pixel error:", err);
     }
 
   }, []);
-  
+
   // 🎯 Main Control Function
   const handleVideoPlay = (type, index = null) => {
 

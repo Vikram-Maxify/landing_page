@@ -13,6 +13,11 @@ const PaymentPage = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+  const pixelRef = useRef({
+  initiate: false,
+  purchase: false,
+});
 
   const { courseBySlug: course } = useSelector((state) => state.courses);
 
@@ -64,21 +69,21 @@ const PaymentPage = () => {
     }
   }, [slug, dispatch]);
 
-  useEffect(() => {
-    if (course && window.fbq) {
-      const finalPrice =
-        course?.discount_price > 0
-          ? course.discount_price
-          : course?.price;
+  // useEffect(() => {
+  //   if (course && window.fbq) {
+  //     const finalPrice =
+  //       course?.discount_price > 0
+  //         ? course.discount_price
+  //         : course?.price;
 
-      window.fbq("track", "InitiateCheckout", {
-        content_name: course.title,
-        content_category: "Course",
-        value: finalPrice,
-        currency: "INR",
-      });
-    }
-  }, [course]);
+  //     window.fbq("track", "InitiateCheckout", {
+  //       content_name: course.title,
+  //       content_category: "Course",
+  //       value: finalPrice,
+  //       currency: "INR",
+  //     });
+  //   }
+  // }, [course]);
 
   /* ================= AUTO PAYMENT ================= */
   useEffect(() => {
@@ -137,7 +142,7 @@ const PaymentPage = () => {
         const { key, order_id, amount } = orderRes.payload;
 
         /* ================= FB INITIATE CHECKOUT ================= */
-        if (window.fbq) {
+        if (window.fbq && !pixelRef.current.initiate) {
           window.fbq("track", "InitiateCheckout", {
             value: finalPrice,
             currency: "INR",
@@ -145,8 +150,9 @@ const PaymentPage = () => {
             content_type: "course",
             content_ids: [course._id],
           });
-        }
 
+          pixelRef.current.initiate = true;
+        }
         const options = {
           key,
           amount,
@@ -219,7 +225,7 @@ const PaymentPage = () => {
               }
 
               /* ================= FB PURCHASE EVENT ================= */
-              if (window.fbq) {
+              if (window.fbq && !pixelRef.current.purchase) {
                 window.fbq("track", "Purchase", {
                   value: finalPrice,
                   currency: "INR",
@@ -227,8 +233,9 @@ const PaymentPage = () => {
                   content_type: "course",
                   content_ids: [course._id],
                 });
-              }
 
+                pixelRef.current.purchase = true;
+              }
               /* ================= SUCCESS NAVIGATION ================= */
               navigate("/payment-success", {
                 replace: true,

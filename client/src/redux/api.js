@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://maxifyacademy.com/api",
+  baseURL: "https://demo1.go-drop.in/api",
   withCredentials: true, // ✅ global enable
   headers: {
     "Content-Type": "application/json",
