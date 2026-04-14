@@ -9,7 +9,7 @@ export const getAllCourses = createAsyncThunk(
   "courses/getAll",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`https://demo1.go-drop.in/api/course/all`);
+      const res = await axios.get(`https://maxifyacademy.com/api/course/all`);
       return res.data.courses;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Failed to load courses");
@@ -21,7 +21,7 @@ export const getCourseBySlug = createAsyncThunk(
   "course/getCourseBySlug",
   async (slug, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`https://demo1.go-drop.in/api/course/getcourse/${slug}`);
+      const res = await axios.get(`https://maxifyacademy.com/api/course/getcourse/${slug}`);
       return res.data.course;
     } catch (error) {
       return rejectWithValue(
@@ -35,7 +35,7 @@ export const getCourse = createAsyncThunk(
   "courses/getOne",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`https://demo1.go-drop.in/api/course/${id}`);
+      const res = await axios.get(`https://maxifyacademy.com/api/course/${id}`);
       return res.data.course;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Failed to load course");
@@ -47,7 +47,7 @@ export const getCourseContentByCourseId = createAsyncThunk(
   "courses/getContent",
   async (course_id, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`https://demo1.go-drop.in/api/course/cour/${course_id}`);
+      const res = await axios.get(`https://maxifyacademy.com/api/course/cour/${course_id}`);
       return res.data.contents;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Failed to fetch course content");

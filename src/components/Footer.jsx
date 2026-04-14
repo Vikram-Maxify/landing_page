@@ -48,7 +48,7 @@ const Footer = () => {
 
             <div className="flex gap-3">
   {[
-    { icon: FaGlobe, link: "https://maxifyacademy.com/" },
+    { icon: FaGlobe, link: "https://maxifyacademy.com" },
     { icon: FaInstagram, link: "https://www.instagram.com/shahidrazaaa" },
     { icon: FaLinkedinIn, link: "https://www.linkedin.com/company/themaxify/posts/?feedView=all" },
     { icon: FaYoutube, link: "https://www.youtube.com/@maxifysolution1" },

@@ -8,7 +8,7 @@ export const getCourseReviewData = createAsyncThunk(
   "courseReview/getCourseReviewData",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get("https://demo1.go-drop.in/api/review/allreview");
+      const res = await axios.get("https://maxifyacademy.com/api/review/allreview");
       return res.data.data;
     } catch (err) {
       return rejectWithValue(
@@ -25,7 +25,7 @@ export const getReviewByCourseId = createAsyncThunk(
   "courseReview/getReviewByCourseId",
   async (courseId, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`https://demo1.go-drop.in/api/review/course/${courseId}`);
+      const res = await axios.get(`https://maxifyacademy.com/api/review/course/${courseId}`);
       return res.data.reviews; // returns array of reviews
     } catch (err) {
       return rejectWithValue(
@@ -42,7 +42,7 @@ export const createReview = createAsyncThunk(
   "courseReview/createReview",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://demo1.go-drop.in/api/review/create", payload);
+      const res = await axios.post("https://maxifyacademy.com/api/review/create", payload);
       return res.data.review; // created review
     } catch (err) {
       return rejectWithValue(

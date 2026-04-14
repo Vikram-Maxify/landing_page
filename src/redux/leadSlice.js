@@ -1,31 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// ✅ API call
+// ✅ API call with axios
 export const submitLead = createAsyncThunk(
   "lead/submitLead",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://demo1.go-drop.in/api/social-lead/lead",
+      const res = await axios.post(
+        "https://maxifyacademy.com/api/social-lead/lead",
+        data,
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
         }
       );
 
-      const result = await res.json();
-
-      if (!res.ok) {
-        return rejectWithValue(result);
-      }
-
-      return result;
-
+      return res.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      // Axios error handling
+      if (error.response) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue(error.message);
+      }
     }
   }
 );
@@ -55,7 +53,7 @@ const leadSlice = createSlice({
       .addCase(submitLead.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.lead = action.payload.lead;
+        state.lead = action.payload?.lead; // safer
       })
       .addCase(submitLead.rejected, (state, action) => {
         state.loading = false;

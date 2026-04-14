@@ -16,7 +16,7 @@ export const createOrder = createAsyncThunk(
       }
 
       const res = await axios
-      .post("https://demo1.go-drop.in/api/amount/create-order", payload);
+      .post("https://maxifyacademy.com/api/amount/create-order", payload);
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -33,7 +33,7 @@ export const verifyPayment = createAsyncThunk(
   "amount/verifyPayment",
   async (paymentData, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://demo1.go-drop.in/api/amount/verify-payment", paymentData);
+      const res = await axios.post("https://maxifyacademy.com/api/amount/verify-payment", paymentData);
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -62,7 +62,7 @@ export const createPurchase = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await axios.post("https://demo1.go-drop.in/api/amount/create-purchase", {
+      const res = await axios.post("https://maxifyacademy.com/api/amount/create-purchase", {
         course_id,
         is_buy,
         purchased_amount,
@@ -89,7 +89,7 @@ export const saveFailedPayment = createAsyncThunk(
   "amount/saveFailedPayment",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://demo1.go-drop.in/api/payment/failure", data);
+      const res = await axios.post("https://maxifyacademy.com/api/payment/failure", data);
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -106,7 +106,7 @@ export const enrollCourse = createAsyncThunk(
   "amount/enrollCourse",
   async ({ course_id }, { rejectWithValue }) => {
     try {
-      const res = await axios.post("https://demo1.go-drop.in/api/purchase/enroll", { course_id });
+      const res = await axios.post("https://maxifyacademy.com/api/purchase/enroll", { course_id });
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -123,7 +123,7 @@ export const getPurchasesByUser = createAsyncThunk(
   "amount/getPurchasesByUser",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get("https://demo1.go-drop.in/api/purchase/user/my-purchases");
+      const res = await axios.get("https://maxifyacademy.com/api/purchase/user/my-purchases");
       return res.data;
     } catch (err) {
       return rejectWithValue(
