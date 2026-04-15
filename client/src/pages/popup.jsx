@@ -211,6 +211,10 @@ const LeadPage = () => {
                     name="phone"
                     required
                     placeholder="WhatsApp number"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    pattern="[0-9]{10}"
+                    minLength={10}
                     maxLength={10}
                     onInput={(e) => {
                       e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
