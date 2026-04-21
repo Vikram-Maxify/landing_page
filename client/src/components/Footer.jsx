@@ -18,7 +18,7 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-[#0B1220] text-white pt-14 md:pt-20 pb-8">
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* TOP GRID */}
@@ -27,43 +27,38 @@ const Footer = () => {
           {/* COMPANY */}
           <div>
             <div className="flex items-center mb-5">
-  <div className="w-12 h-12 min-w-[48px] rounded-full bg-[#0092B9] flex items-center justify-center mr-3">
-    <MdLocationCity className="text-white text-xl" />
-  </div>
+              <div className="w-12 h-12 min-w-[48px] rounded-full bg-[#0092B9] flex items-center justify-center mr-3">
+                <MdLocationCity className="text-white text-xl" />
+              </div>
 
-  <div>
-  <h2 className="font-bold text-sm sm:text-lg mt-2 sm:mt-1">
-    Maxify Academy
-  </h2>
+              <div>
+                <h2 className="font-bold text-sm sm:text-lg mt-2 sm:mt-1">
+                  Maxify Academy
+                </h2>
 
-  <p className="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-0">
-    F02, D34 Red Fm Road Sector 2 Block D Noida, Uttar Pradesh 201301
-  </p>
-</div>
-</div>
-
-            <p className="text-gray-400 text-sm leading-relaxed mb-5">
-              Complete Social Media Income System
-            </p>
-
+                <p className="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-0">
+                  Complete Social Media Income System
+                </p>
+              </div>
+            </div>
             <div className="flex gap-3">
-  {[
-    { icon: FaGlobe, link: "https://maxifyacademy.com " },
-    { icon: FaInstagram, link: "https://www.instagram.com/shahidrazaaa" },
-    { icon: FaLinkedinIn, link: "https://www.linkedin.com/company/themaxify/posts/?feedView=all" },
-    { icon: FaYoutube, link: "https://www.youtube.com/@maxifysolution1" },
-  ].map(({ icon: Icon, link }, i) => (
-    <a
-      key={i}
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-[#0092B9] transition cursor-pointer text-white"
-    >
-      <Icon />
-    </a>
-  ))}
-</div>
+              {[
+                { icon: FaGlobe, link: "https://maxifyacademy.com " },
+                { icon: FaInstagram, link: "https://www.instagram.com/shahidrazaaa" },
+                { icon: FaLinkedinIn, link: "https://www.linkedin.com/company/themaxify/posts/?feedView=all" },
+                { icon: FaYoutube, link: "https://www.youtube.com/@maxifysolution1" },
+              ].map(({ icon: Icon, link }, i) => (
+                <a
+                  key={i}
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-[#0092B9] transition cursor-pointer text-white"
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* LINKS */}
