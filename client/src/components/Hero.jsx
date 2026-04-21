@@ -8,7 +8,7 @@ const handleRedirect = () => {
   const { email, phone } = JSON.parse(data || "{}");
 
   const baseUrl = "/payment/complete-social-media-income-system";
-  const finalUrl = `${baseUrl}?email=${email}&phone=${phone}`;
+  const finalUrl = `https://maxifyacademy.com/payment/complete-social-media-income-system`;
 
   window.location.href = finalUrl;
 };
