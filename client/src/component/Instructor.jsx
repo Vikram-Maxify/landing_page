@@ -5,7 +5,13 @@ const Instructor = () => {
     const instructor = {
         name: "Shahid",
         image: "https://i.ibb.co/4wHTGNGC/shahid-maxify2.jpg",
-        bio: "Co-Founder of Maxify Web Solutions. I've built a 30+ member team and helped multiple clients grow using social media and digital strategies.",
+        bio: (
+            <>
+                <span className="text-blue-600 font-medium">Co-Founder</span> of Maxify Web Solutions. 
+                I've built a <span className="text-blue-600 font-medium">30+</span> member team 
+                and helped multiple clients grow using social media and digital strategies.
+            </>
+        ),
         stats: [
             { value: "250+", label: "Clients Served" },
             { value: "30+", label: "Team Members" },

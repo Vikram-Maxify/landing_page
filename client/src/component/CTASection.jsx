@@ -85,29 +85,34 @@ const CTASection = () => {
                 </p>
 
             </div>
-            <div className="mt-6 flex items-center justify-center gap-3 bg-blue-50 border border-blue-100 px-4 sm:px-5 py-3 rounded-2xl w-fit mx-auto whitespace-nowrap">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-blue-50 border border-blue-100 px-3 sm:px-5 py-3 rounded-2xl w-full max-w-xs sm:max-w-fit mx-auto">
 
-                <FiClock className="text-blue-600 text-lg shrink-0" />
+    <FiClock className="text-blue-600 text-lg shrink-0" />
 
-                <span className="text-sm text-blue-700 font-medium">
-                    Offer ends in:
-                </span>
+    <span className="text-xs sm:text-sm text-blue-700 font-medium">
+        Offer ends in:
+    </span>
 
-                <div className="flex items-center gap-1 text-lg font-semibold text-blue-900">
-                    <div className="bg-white px-2 sm:px-3 py-1 rounded-lg shadow-sm min-w-[42px] text-center">
-                        {hours} H
-                    </div>
-                    <span>:</span>
-                    <div className="bg-white px-2 sm:px-3 py-1 rounded-lg shadow-sm min-w-[42px] text-center">
-                        {minutes} M
-                    </div>
-                    <span>:</span>
-                    <div className="bg-white px-2 sm:px-3 py-1 rounded-lg shadow-sm min-w-[42px] text-center">
-                        {seconds} S
-                    </div>
-                </div>
+    <div className="flex items-center gap-1 text-base sm:text-lg font-semibold text-blue-900 flex-wrap justify-center">
 
-            </div>
+        <div className="bg-white px-2 sm:px-3 py-1 rounded-lg shadow-sm min-w-[36px] sm:min-w-[42px] text-center">
+            {hours} H
+        </div>
+
+        <span>:</span>
+
+        <div className="bg-white px-2 sm:px-3 py-1 rounded-lg shadow-sm min-w-[36px] sm:min-w-[42px] text-center">
+            {minutes} M
+        </div>
+
+        <span>:</span>
+
+        <div className="bg-white px-2 sm:px-3 py-1 rounded-lg shadow-sm min-w-[36px] sm:min-w-[42px] text-center">
+            {seconds} S
+        </div>
+
+    </div>
+</div>
 
             {/* CTA Button */}
             <div className="mt-10">

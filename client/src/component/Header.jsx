@@ -7,19 +7,22 @@ const Header = () => {
     }
 
     return (
-        <nav className="sticky top-0 z-50 w-full flex items-center justify-between px-6 md:px-16 py-3 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav className="sticky top-0 z-50 w-full flex items-center justify-between px-4 sm:px-6 md:px-16 py-3 bg-white/80 backdrop-blur-md border-b border-gray-100">
 
             {/* Logo */}
             <div className="flex items-center">
                 <img
                     src="https://i.ibb.co/5X9Fm9mc/logo-2.png"
                     alt="logo"
-                    className="h-10 md:h-12 w-auto object-contain"
+                    className="h-9 sm:h-10 md:h-12 w-auto object-contain"
                 />
             </div>
 
             {/* CTA */}
-            <button onClick={handleRedirect} className=" bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition">
+            <button
+                onClick={handleRedirect}
+                className="bg-blue-600 text-white px-3 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium hover:bg-blue-700 transition whitespace-nowrap"
+            >
                 Enroll Now
             </button>
 
