@@ -193,7 +193,7 @@ const SuccessStories = () => {
                             autoPlay
                             playsInline
                             preload="auto"
-                            className="w-full h-auto md:max-h-[70vh] object-cover"
+                            className="w-full h-auto md:max-h-[70vh]"
                         />
 
                     </div>
