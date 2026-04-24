@@ -27,6 +27,15 @@ const IncomeProof = () => {
 
   return (
     <section className="px-6 md:px-16 py-10 bg-[#f6f8fc]">
+      <div className="text-center mb-4">
+        <h2 className="text-2xl md:text-4xl font-bold  text-gray-900">
+          Real Income Proof
+        </h2>
+        <p className="mt-2 text-gray-500">
+          Multiple Income Streams - Real Screenshots
+        </p>
+      </div>
+
       <div className="grid md:grid-cols-3 gap-6">
 
         {data.map((item, i) => (
