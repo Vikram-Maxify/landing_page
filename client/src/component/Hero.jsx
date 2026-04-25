@@ -100,17 +100,17 @@ const Hero = ({ onPlay = () => { } }) => {
 
                 </div>
                 <h1 className="mt-5 text-xl md:text-2xl font-bold text-center text-gray-900 tracking-tight relative">
-  <span className="relative z-10">
-    Complete Social Media Income System
-  </span>
-  <span className="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-blue-400 to-indigo-500"></span>
-</h1>
+                    <span className="relative z-10">
+                        Complete Social Media Income System
+                    </span>
+                    <span className="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-blue-400 to-indigo-500"></span>
+                </h1>
                 <div className="mt-3 px-1">
-  <div className="bg-indigo-50 text-indigo-700 text-sm md:text-base py-2 rounded-lg border border-indigo-100 flex items-center justify-center gap-2">
-    <TrendingUp className="w-4 h-4" />
-    <span>Start Earning in 1-Day</span>
-  </div>
-</div>
+                    <div className="bg-indigo-50 text-indigo-700 text-sm md:text-base py-2 rounded-lg border border-indigo-100 flex items-center justify-center gap-2">
+                        <TrendingUp className="w-4 h-4" />
+                        <span className='font-bold'>Start Earning in 1-Day</span>
+                    </div>
+                </div>
             </div>
 
 
