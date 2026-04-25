@@ -31,8 +31,8 @@ const LearnSection = () => {
         },
         {
             icon: <FaBullseye />,
-            title: 'Secret Plstform',
-            desc: 'Secret platform use kar ke musliple income source kaise kare.'
+            title: 'Secret Platform',
+            desc: 'Secret platform use kar ke multiple income source kaise kare.'
         }
     ]
 

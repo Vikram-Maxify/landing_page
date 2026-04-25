@@ -11,27 +11,27 @@ const SuccessStories = () => {
     const data = [
         {
             name: "Ravi Kumar",
-            desc: "Ye course complete kiye 12 din huye aur mujhe 2 local clients mil gaye. Sach me worth it hai."
+            desc: "Mere mind me idea tha but clear nahi tha kaise start karu kya karu. Is course me sir ne clear roadmap diya hai jiske baad mera sab confusion door hogya"
         },
         {
-            name: "Arjun Verma",
-            desc: "Sach me practical course hai, totally worth it."
+            name: "Manpreet Sandhu",
+            desc: "Pehle lagta tha sirf metro cities me hi growth hoti hai lekin sir ki baate sun k maine apne hi city m start kiya and abhi mere paas 3 clients hai thankyou so much Sir"
         },
         {
             name: "Pooja Sharma",
-            desc: "Phone se earning start kar payi."
+            desc: "Sir ne jo jo process bataya wo saari cheeze follow ki aur 7 din ke andar hi result milna start ho gaya. Thankyou sir Thankyou so much"
         },
         {
             name: "Neha Gupta",
-            desc: "Ab main ghar se income kar rahi hoon."
+            desc: "As a student mujhe kuch part time kaam krna tha but smjh nhi aara tha kya kru but bhaiya ka ye course dekh ke ab mai part time karke 15k kama rahi hu monthly ke"
         },
         {
-            name: "Arpit Jain",
-            desc: "25 din me 21k kama liya."
+            name: "Himanshu Das",
+            desc: "ye course complete kiye mujhe 1 month hua aaj mai 2 logo ko kaam par rakha hu, mahine ka 60k revenue hai 20k salary deta hu dono bache ko aur 40k per month mai kama raha hu aur bahut jaldi mai apne city me ek agency bana lunga, thank you so much sir ye course ne mere life chnage kar diya."
         },
         {
-            name: "Faisal Qureshi",
-            desc: "Simple & result-oriented course."
+            name: "Prakhar Awasthi",
+            desc: "Main pehle sirf YouTube dekh kar try karta tha, but consistency nahi thi. Is course me jab sir se daily action plan mila to 30 days me first client ₹8,500 ka close hua aur Ab 3 clients ke saath ₹27k/month earn kr raha hu aur agar ese hi clients milte rahe to apni mini agency bhi open krlunga"
         },
         // 🔥 added
         {
@@ -39,12 +39,12 @@ const SuccessStories = () => {
             desc: "mere mind me pahle se ye idea tha par clarity nhi tha mai confuse tha ess course ke baad clear ho gaya ab mai start krunga kaam krna aaj se"
         },
         {
-            name: "Simran Kaur",
-            desc: "mai bas ek word bolna chahti hu than yu thaku thaku so much sir."
+            name: "Harleen Kaur",
+            desc: "I always thought digital marketing is too complicated. But this course simplified everything from finding local businesses to closing deals. I started with a boutique client at ₹7,000/month. Within 2 months, I scaled to 3 clients and now earning around ₹29k consistently."
         },
         {
-            name: "Ayesha Khan",
-            desc: "Main apne ghar se kaam kar rahi hoon aur earning start ho gayi"
+            name: "Ruchika Singh",
+            desc: "Sir ki baat follow karke maine apne area ke ek salon ko approach kiya and wo itne easily maan gye mujhe to believe hi nhi horha aur ab iss wajah se mera confidence level bhi bhot increase hogya thankyouu bhaiya "
         }
     ]
 
